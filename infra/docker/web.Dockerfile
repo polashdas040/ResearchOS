@@ -8,4 +8,6 @@ RUN npm install
 
 COPY . .
 
+RUN npm --workspace apps/web run build
+
 EXPOSE 3000
