@@ -1,7 +1,5 @@
 from __future__ import annotations
 
-import json
-from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any
 
@@ -11,6 +9,8 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, Field
+
+from backend.store import ThreadStore
 
 load_dotenv()
 
@@ -31,29 +31,6 @@ class ChatResponse(BaseModel):
     history: list[dict[str, str]]
 
 
-@dataclass
-class ChatStore:
-    path: Path
-    state: dict[str, list[dict[str, str]]] = field(default_factory=dict)
-
-    def load(self) -> None:
-        if self.path.exists():
-            self.state = json.loads(self.path.read_text(encoding="utf-8"))
-
-    def save(self) -> None:
-        self.path.parent.mkdir(parents=True, exist_ok=True)
-        self.path.write_text(json.dumps(self.state, indent=2, ensure_ascii=False), encoding="utf-8")
-
-    def add_turn(self, user_id: str, role: str, content: str) -> list[dict[str, str]]:
-        thread = self.state.setdefault(user_id, [])
-        thread.append({"role": role, "content": content})
-        self.save()
-        return thread
-
-    def get_history(self, user_id: str) -> list[dict[str, str]]:
-        return self.state.get(user_id, [])
-
-
 app = FastAPI(title="Research Agent Studio")
 app.add_middleware(
     CORSMiddleware,
@@ -63,7 +40,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-store = ChatStore(STATE_FILE)
+store = ThreadStore(STATE_FILE)
 store.load()
 
 if WEB_DIR.exists():
@@ -85,19 +62,21 @@ def health() -> dict[str, str]:
 
 @app.get("/api/history/{user_id}")
 def history(user_id: str) -> dict[str, Any]:
-    return {"user_id": user_id, "history": store.get_history(user_id)}
+    thread = store.get_thread(user_id)
+    return {"user_id": user_id, "history": [message.__dict__ for message in thread.messages]}
 
 
 @app.post("/api/chat", response_model=ChatResponse)
 def chat(request: ChatRequest) -> ChatResponse:
-    store.add_turn(request.user_id, "user", request.message)
+    store.append_message(request.user_id, "user", request.message)
 
     reply = (
         "Research Agent Studio is ready. "
         "Next we will add the multi-agent planner, retrieval memory, login, credits, and document understanding."
     )
 
-    history = store.add_turn(request.user_id, "assistant", reply)
+    thread = store.append_message(request.user_id, "assistant", reply)
+    history = [message.__dict__ for message in thread.messages]
     return ChatResponse(user_id=request.user_id, reply=reply, history=history)
 
 
