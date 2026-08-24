@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Research Agent Studio</title>
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <section class="hero">
+        <div>
+          <p class="eyebrow">Research workspace</p>
+          <h1>Research Agent Studio</h1>
+          <p class="lede">
+            A fresh base for multi-agent research chat, memory, uploads, and future login and credit systems.
+          </p>
+        </div>
+        <div class="badge" id="statusBadge">Ready</div>
+      </section>
+
+      <section class="panel chat-panel">
+        <div class="panel-head">
+          <h2>Chat</h2>
+          <button id="loadHistoryBtn" type="button">Load history</button>
+        </div>
+
+        <div id="messages" class="messages"></div>
+
+        <form id="chatForm" class="composer">
+          <input id="userId" type="text" value="guest" aria-label="User ID" />
+          <input id="messageInput" type="text" placeholder="Ask a research question..." autocomplete="off" />
+          <button type="submit">Send</button>
+        </form>
+      </section>
+
+      <section class="panel history-panel">
+        <div class="panel-head">
+          <h2>Stored history</h2>
+        </div>
+        <pre id="historyView" class="history-view">No conversation loaded yet.</pre>
+      </section>
+    </main>
+
+    <script src="/static/app.js"></script>
+  </body>
+</html>
