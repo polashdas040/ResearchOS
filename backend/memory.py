@@ -24,8 +24,23 @@ class _DeterministicEmbedding:
     def __call__(self, input: list[str]) -> list[list[float]]:
         return [self._embed(text) for text in input]
 
+    def embed_documents(self, input: list[str]) -> list[list[float]]:
+        return self(input)
+
+    def embed_query(self, input: list[str]) -> list[list[float]]:
+        return self(input)
+
     def name(self) -> str:
         return "deterministic-local"
+
+    def is_legacy(self) -> bool:
+        return False
+
+    def default_space(self) -> str:
+        return "cosine"
+
+    def supported_spaces(self) -> list[str]:
+        return ["cosine"]
 
     @classmethod
     def _embed(cls, text: str) -> list[float]:
@@ -55,6 +70,14 @@ class MemoryIndex:
             documents=texts,
             metadatas=[{"thread_id": thread_id} for _ in texts],
         )
+
+    def close(self) -> None:
+        close = getattr(self._client, "close", None)
+        if callable(close):
+            close()
+        clear_cache = getattr(self._client, "clear_system_cache", None)
+        if callable(clear_cache):
+            clear_cache()
 
     def search(self, query: str, thread_id: str, k: int = 3) -> list[MemoryHit]:
         if k <= 0:
