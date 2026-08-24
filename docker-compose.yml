@@ -1,0 +1,80 @@
+services:
+  api:
+    build:
+      context: .
+      dockerfile: infra/docker/api.Dockerfile
+    command: uvicorn apps.api.app.main:app --host 0.0.0.0 --port 8000 --reload
+    env_file: .env
+    ports:
+      - "8000:8000"
+    depends_on:
+      - postgres
+      - redis
+      - chroma
+      - minio
+    volumes:
+      - .:/app
+
+  web:
+    build:
+      context: .
+      dockerfile: infra/docker/web.Dockerfile
+    command: npm --workspace apps/web run dev
+    ports:
+      - "3000:3000"
+    depends_on:
+      - api
+    volumes:
+      - .:/app
+
+  worker:
+    build:
+      context: .
+      dockerfile: infra/docker/worker.Dockerfile
+    command: python -m apps.worker.app.main
+    env_file: .env
+    depends_on:
+      - postgres
+      - redis
+    volumes:
+      - .:/app
+
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: researchos
+      POSTGRES_USER: researchos
+      POSTGRES_PASSWORD: researchos
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+
+  chroma:
+    image: chromadb/chroma:latest
+    ports:
+      - "8001:8000"
+    volumes:
+      - chroma-data:/chroma/chroma
+
+  minio:
+    image: minio/minio:latest
+    command: server /data --console-address ":9001"
+    environment:
+      MINIO_ROOT_USER: minioadmin
+      MINIO_ROOT_PASSWORD: minioadmin
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    volumes:
+      - minio-data:/data
+
+volumes:
+  postgres-data:
+  chroma-data:
+  minio-data:
