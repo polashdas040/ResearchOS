@@ -17,7 +17,7 @@ load_dotenv()
 ROOT = Path(__file__).resolve().parent
 WEB_DIR = ROOT / "web"
 DATA_DIR = ROOT / "data"
-STATE_FILE = DATA_DIR / "chat_state.json"
+STATE_FILE = DATA_DIR / "chat_state.db"
 
 
 class ChatRequest(BaseModel):
