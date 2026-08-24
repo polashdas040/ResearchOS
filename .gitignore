@@ -11,3 +11,4 @@ frontend/dist/
 .pytest-tmp/
 .pytest_cache/
 pytest-cache-files-*/
+.worktrees/
