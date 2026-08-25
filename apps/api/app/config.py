@@ -27,6 +27,9 @@ class Settings(BaseSettings):
     object_storage_bucket: str = "researchos"
     object_storage_access_key: str = "minioadmin"
     object_storage_secret_key: str = "minioadmin"
+    auth_secret_key: str = "development-only-change-me"
+    access_token_minutes: int = 15
+    refresh_token_days: int = 30
 
 
 @lru_cache

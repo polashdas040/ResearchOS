@@ -1,6 +1,6 @@
 # ResearchOS
 
-ResearchOS is a production-grade autonomous AI research problem-solving platform. PLAN 00 establishes the development foundation only: API, web shell, worker shell, infrastructure services, tests, linting, migrations, and documentation.
+ResearchOS is a production-grade autonomous AI research problem-solving platform. The current platform includes the development foundation plus PLAN 01 authentication and tenant security.
 
 ## Local Development
 
@@ -18,6 +18,9 @@ ResearchOS is a production-grade autonomous AI research problem-solving platform
 - `make migrate`: apply Alembic migrations.
 - `make migration message="name"`: create an Alembic migration.
 
-## PLAN 00 Scope
+## Implemented Scope
 
-This phase intentionally does not include authentication, projects, chat, files, retrieval, agents, billing, or research runtime behavior.
+- PLAN 00: API, web shell, worker shell, infrastructure services, tests, linting, migrations, and documentation.
+- PLAN 01: users, organizations, memberships, password hashing, bearer tokens, refresh-token rotation, logout, `GET /users/me`, and authorization service.
+
+This project intentionally does not yet include projects, persistent conversations, files, retrieval, agents, billing, or research runtime behavior.
