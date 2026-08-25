@@ -22,5 +22,6 @@ ResearchOS is a production-grade autonomous AI research problem-solving platform
 
 - PLAN 00: API, web shell, worker shell, infrastructure services, tests, linting, migrations, and documentation.
 - PLAN 01: users, organizations, memberships, password hashing, bearer tokens, refresh-token rotation, logout, `GET /users/me`, and authorization service.
+- PLAN 02: tenant-scoped projects, persistent conversations, typed messages, pagination, and conversation soft deletion.
 
-This project intentionally does not yet include projects, persistent conversations, files, retrieval, agents, billing, or research runtime behavior.
+This project intentionally does not yet include file uploads, retrieval, agents, billing, or research runtime behavior.
