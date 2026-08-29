@@ -478,5 +478,5 @@ class InMemoryProjectRepository:
             if message.conversation_id == conversation_id
             and message.organization_id == organization_id
         ]
-        messages.sort(key=lambda message: (message.created_at, message.id))
+        messages.sort(key=lambda message: message.created_at)
         return messages[offset : offset + limit], len(messages)

@@ -1,6 +1,6 @@
 # ResearchOS
 
-ResearchOS is a production-grade autonomous AI research problem-solving platform. The current platform includes the development foundation plus PLAN 01 authentication and tenant security.
+ResearchOS is a production-grade autonomous AI research problem-solving platform. The current platform includes the development foundation through PLAN 03 chat streaming and model gateway infrastructure.
 
 ## Local Development
 
@@ -23,5 +23,6 @@ ResearchOS is a production-grade autonomous AI research problem-solving platform
 - PLAN 00: API, web shell, worker shell, infrastructure services, tests, linting, migrations, and documentation.
 - PLAN 01: users, organizations, memberships, password hashing, bearer tokens, refresh-token rotation, logout, `GET /users/me`, and authorization service.
 - PLAN 02: tenant-scoped projects, persistent conversations, typed messages, pagination, and conversation soft deletion.
+- PLAN 03: model gateway interfaces, deterministic local chat provider, SSE chat streaming, normalized provider failure events, and model usage recording.
 
-This project intentionally does not yet include file uploads, retrieval, agents, billing, or research runtime behavior.
+This project intentionally does not yet include file uploads, retrieval, agents, billing, research runtime behavior, or a production LLM provider adapter.
