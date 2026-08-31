@@ -1,5 +1,4 @@
 import React from "react";
-import { HydrationSafeButton } from "./HydrationSafeControls";
 
 type FileAttachmentProps = {
   onFileSelected?: (file: File) => Promise<void>;
@@ -26,13 +25,12 @@ export function FileAttachment({ onFileSelected }: FileAttachmentProps) {
         onChange={handleChange}
         accept=".pdf,.csv,.json,.txt,.png,.jpg,.jpeg"
       />
-      <HydrationSafeButton
-        type="button"
-        onClick={() => document.getElementById(inputId)?.click()}
-        className="h-10 rounded border border-[#c5cfda] px-3 text-sm font-medium text-[#25313d]"
+      <label
+        htmlFor={inputId}
+        className="flex h-10 cursor-pointer items-center rounded border border-[#c5cfda] px-3 text-sm font-medium text-[#25313d]"
       >
         Attach file
-      </HydrationSafeButton>
+      </label>
     </>
   );
 }

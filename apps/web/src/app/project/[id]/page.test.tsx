@@ -13,7 +13,7 @@ it("renders the full research workspace interface", async () => {
   expect(screen.getByText("Biomarker evidence synthesis")).toBeInTheDocument();
   expect(screen.getByText("Citation validation in progress")).toBeInTheDocument();
   expect(screen.getByPlaceholderText("Ask ResearchOS...")).toBeInTheDocument();
-  expect(screen.getByRole("button", { name: "Attach file" })).toBeInTheDocument();
+  expect(screen.getByLabelText("Attach file")).toBeInTheDocument();
   expect(screen.getByRole("button", { name: "Send message" })).toBeInTheDocument();
 });
 
