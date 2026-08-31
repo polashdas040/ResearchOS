@@ -1,13 +1,38 @@
 import React from "react";
 import { HydrationSafeButton } from "./HydrationSafeControls";
 
-export function FileAttachment() {
+type FileAttachmentProps = {
+  onFileSelected?: (file: File) => Promise<void>;
+};
+
+export function FileAttachment({ onFileSelected }: FileAttachmentProps) {
+  const inputId = React.useId();
+
+  async function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
+    const file = event.target.files?.[0];
+    if (!file || !onFileSelected) {
+      return;
+    }
+    await onFileSelected(file);
+    event.target.value = "";
+  }
+
   return (
-    <HydrationSafeButton
-      type="button"
-      className="h-10 rounded border border-[#c5cfda] px-3 text-sm font-medium text-[#25313d]"
-    >
-      Attach file
-    </HydrationSafeButton>
+    <>
+      <input
+        id={inputId}
+        type="file"
+        className="sr-only"
+        onChange={handleChange}
+        accept=".pdf,.csv,.json,.txt,.png,.jpg,.jpeg"
+      />
+      <HydrationSafeButton
+        type="button"
+        onClick={() => document.getElementById(inputId)?.click()}
+        className="h-10 rounded border border-[#c5cfda] px-3 text-sm font-medium text-[#25313d]"
+      >
+        Attach file
+      </HydrationSafeButton>
+    </>
   );
 }

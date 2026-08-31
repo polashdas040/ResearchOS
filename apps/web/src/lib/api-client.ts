@@ -41,6 +41,12 @@ export type MessageResponse = {
   content: string;
 };
 
+export type FileResponse = {
+  id: string;
+  filename: string;
+  status: string;
+};
+
 type MessageListResponse = {
   items: MessageResponse[];
 };
@@ -110,6 +116,27 @@ export async function sendChatMessage(
     method: "POST",
     body: JSON.stringify({ message_type: "USER", content })
   });
+}
+
+export async function uploadProjectFile(projectId: string, file: File): Promise<FileResponse> {
+  const token = getStoredAccessToken();
+  if (!token) {
+    throw new Error("Please sign in first.");
+  }
+  const formData = new FormData();
+  formData.append("file", file);
+  const response = await fetch(`${API_BASE_URL}/projects/${projectId}/files`, {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${token}`
+    },
+    body: formData
+  });
+  if (!response.ok) {
+    const message = await readErrorMessage(response);
+    throw new Error(message);
+  }
+  return (await response.json()) as FileResponse;
 }
 
 export async function streamChatMessage(

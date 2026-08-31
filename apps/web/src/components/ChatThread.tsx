@@ -6,10 +6,11 @@ import { ChatMessage } from "./workspace-data";
 type ChatThreadProps = {
   messages: ChatMessage[];
   onSendMessage: (content: string) => Promise<void>;
+  onFileSelected?: (file: File) => Promise<void>;
   error: string | null;
 };
 
-export function ChatThread({ messages, onSendMessage, error }: ChatThreadProps) {
+export function ChatThread({ messages, onSendMessage, onFileSelected, error }: ChatThreadProps) {
   return (
     <main aria-label="Research chat" className="flex min-h-[620px] flex-col bg-white">
       <div className="border-b border-[#d7dde6] px-5 py-4">
@@ -28,7 +29,7 @@ export function ChatThread({ messages, onSendMessage, error }: ChatThreadProps) 
           <Metric label="Warnings" value="3" emphasis />
         </section>
       </div>
-      <MessageComposer onSubmit={onSendMessage} />
+      <MessageComposer onSubmit={onSendMessage} onFileSelected={onFileSelected} />
     </main>
   );
 }

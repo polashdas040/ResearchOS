@@ -12,7 +12,8 @@ import {
   getConversation,
   getStoredAccessToken,
   listConversations,
-  streamChatMessage
+  streamChatMessage,
+  uploadProjectFile
 } from "../lib/api-client";
 import { ChatMessage, messages as demoMessages } from "./workspace-data";
 
@@ -99,6 +100,24 @@ export function WorkspaceShell({ projectId }: WorkspaceShellProps) {
     }
   }
 
+  async function handleFileSelected(file: File) {
+    setError(null);
+    try {
+      const uploaded = await uploadProjectFile(projectId, file);
+      setMessages((current) => [
+        ...current,
+        {
+          id: crypto.randomUUID(),
+          author: "ResearchOS",
+          content: `Attached ${uploaded.filename} (${uploaded.status}).`,
+          tone: "system"
+        }
+      ]);
+    } catch (error) {
+      setError(error instanceof Error ? error.message : "Could not upload file.");
+    }
+  }
+
   return (
     <div className="min-h-screen bg-[#eef2f5] text-[#172026]">
       <AppHeader />
@@ -106,7 +125,12 @@ export function WorkspaceShell({ projectId }: WorkspaceShellProps) {
         <ProjectSidebar />
         <ConversationSidebar />
         <div className="flex min-w-0 flex-col">
-          <ChatThread messages={messages} onSendMessage={handleSendMessage} error={error} />
+          <ChatThread
+            messages={messages}
+            onSendMessage={handleSendMessage}
+            onFileSelected={handleFileSelected}
+            error={error}
+          />
         </div>
         <div className="grid bg-[#f7f9fb] lg:grid-rows-[auto_1fr]">
           <div className="border-t border-[#d7dde6] p-4 lg:border-l lg:border-t-0">

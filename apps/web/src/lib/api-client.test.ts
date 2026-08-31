@@ -5,7 +5,8 @@ import {
   login,
   register,
   sendChatMessage,
-  streamChatMessage
+  streamChatMessage,
+  uploadProjectFile
 } from "./api-client";
 
 beforeEach(() => {
@@ -95,6 +96,26 @@ it("streams assistant deltas", async () => {
   await streamChatMessage("conversation-1", "hello", (delta) => deltas.push(delta));
 
   expect(deltas).toEqual(["Hi", " there"]);
+});
+
+it("uploads project files with authorization", async () => {
+  localStorage.setItem("researchos.access_token", "access-token");
+  const fetchMock = vi.fn(async () =>
+    okResponse({ id: "file-1", filename: "notes.txt", status: "READY" })
+  );
+  vi.stubGlobal("fetch", fetchMock as unknown as typeof fetch);
+
+  const file = new File(["hello"], "notes.txt", { type: "text/plain" });
+  await uploadProjectFile("project-1", file);
+
+  expect(fetchMock).toHaveBeenCalledWith(
+    "http://localhost:8000/projects/project-1/files",
+    expect.objectContaining({
+      method: "POST",
+      headers: { Authorization: "Bearer access-token" },
+      body: expect.any(FormData)
+    })
+  );
 });
 
 function tokenResponse(): Response {
