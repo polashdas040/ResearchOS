@@ -2,8 +2,8 @@ import { render, screen } from "@testing-library/react";
 import React from "react";
 import ProjectPage from "./page";
 
-it("renders the full research workspace interface", () => {
-  render(<ProjectPage />);
+it("renders the full research workspace interface", async () => {
+  render(await ProjectPage({ params: Promise.resolve({ id: "demo" }) }));
 
   expect(screen.getByRole("navigation", { name: "Projects" })).toBeInTheDocument();
   expect(screen.getByRole("navigation", { name: "Conversations" })).toBeInTheDocument();
@@ -17,8 +17,8 @@ it("renders the full research workspace interface", () => {
   expect(screen.getByRole("button", { name: "Send message" })).toBeInTheDocument();
 });
 
-it("renders expected artifacts and progress without exposing hidden reasoning", () => {
-  render(<ProjectPage />);
+it("renders expected artifacts and progress without exposing hidden reasoning", async () => {
+  render(await ProjectPage({ params: Promise.resolve({ id: "demo" }) }));
 
   expect(screen.getByText("Evidence Map")).toBeInTheDocument();
   expect(screen.getByText("Gap Matrix")).toBeInTheDocument();

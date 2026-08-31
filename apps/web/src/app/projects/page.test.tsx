@@ -7,9 +7,7 @@ it("renders the projects shell", () => {
 
   expect(screen.getByRole("heading", { name: "Projects" })).toBeInTheDocument();
   expect(screen.getByRole("button", { name: "New project" })).toBeInTheDocument();
-  expect(screen.getByRole("link", { name: /ADNI Literature Review/ })).toHaveAttribute(
-    "href",
-    "/project/demo"
-  );
-  expect(screen.getByText("3 active research workspaces")).toBeInTheDocument();
+  expect(screen.getByText("0 research workspaces")).toBeInTheDocument();
+  expect(screen.getByText("Please sign in or create an account first.")).toBeInTheDocument();
+  expect(screen.queryByRole("link", { name: /ADNI Literature Review/ })).not.toBeInTheDocument();
 });

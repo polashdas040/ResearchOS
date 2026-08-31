@@ -1,9 +1,15 @@
 import React from "react";
 import { MessageComposer } from "./MessageComposer";
 import { StreamingMessage } from "./StreamingMessage";
-import { messages } from "./workspace-data";
+import { ChatMessage } from "./workspace-data";
 
-export function ChatThread() {
+type ChatThreadProps = {
+  messages: ChatMessage[];
+  onSendMessage: (content: string) => Promise<void>;
+  error: string | null;
+};
+
+export function ChatThread({ messages, onSendMessage, error }: ChatThreadProps) {
   return (
     <main aria-label="Research chat" className="flex min-h-[620px] flex-col bg-white">
       <div className="border-b border-[#d7dde6] px-5 py-4">
@@ -15,13 +21,14 @@ export function ChatThread() {
         {messages.map((message) => (
           <StreamingMessage key={message.id} message={message} />
         ))}
+        {error ? <p className="text-sm font-medium text-[#a33a2d]">{error}</p> : null}
         <section aria-label="Workspace metrics" className="grid gap-3 md:grid-cols-3">
           <Metric label="Sources" value="17" />
           <Metric label="Claims" value="24" />
           <Metric label="Warnings" value="3" emphasis />
         </section>
       </div>
-      <MessageComposer />
+      <MessageComposer onSubmit={onSendMessage} />
     </main>
   );
 }
