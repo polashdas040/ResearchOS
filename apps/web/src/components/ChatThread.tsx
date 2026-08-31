@@ -2,12 +2,14 @@ import React from "react";
 import { MessageComposer } from "./MessageComposer";
 import { StreamingMessage } from "./StreamingMessage";
 import { ChatMessage } from "./workspace-data";
+import { AttachedFile } from "../lib/api-client";
 
 type ChatThreadProps = {
   messages: ChatMessage[];
   onSendMessage: (content: string) => Promise<void>;
   onFileSelected?: (file: File) => Promise<void>;
   isUploadingFile?: boolean;
+  attachedFiles?: AttachedFile[];
   error: string | null;
 };
 
@@ -16,6 +18,7 @@ export function ChatThread({
   onSendMessage,
   onFileSelected,
   isUploadingFile = false,
+  attachedFiles = [],
   error
 }: ChatThreadProps) {
   return (
@@ -40,6 +43,7 @@ export function ChatThread({
         onSubmit={onSendMessage}
         onFileSelected={onFileSelected}
         isUploadingFile={isUploadingFile}
+        attachedFiles={attachedFiles}
       />
     </main>
   );

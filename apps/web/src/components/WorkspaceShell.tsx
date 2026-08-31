@@ -9,11 +9,13 @@ import { ProjectSidebar } from "./ProjectSidebar";
 import { ResearchRunPanel } from "./ResearchRunPanel";
 import {
   createConversation,
+  fileDownloadUrl,
   getConversation,
   getStoredAccessToken,
   listConversations,
   streamChatMessage,
-  uploadProjectFile
+  uploadProjectFile,
+  AttachedFile
 } from "../lib/api-client";
 import { ChatMessage, messages as demoMessages } from "./workspace-data";
 
@@ -26,6 +28,7 @@ export function WorkspaceShell({ projectId }: WorkspaceShellProps) {
   const [messages, setMessages] = React.useState<ChatMessage[]>(demoMessages);
   const [error, setError] = React.useState<string | null>(null);
   const [isUploadingFile, setIsUploadingFile] = React.useState(false);
+  const [attachedFiles, setAttachedFiles] = React.useState<AttachedFile[]>([]);
 
   React.useEffect(() => {
     let ignore = false;
@@ -106,13 +109,11 @@ export function WorkspaceShell({ projectId }: WorkspaceShellProps) {
     setIsUploadingFile(true);
     try {
       const uploaded = await uploadProjectFile(projectId, file);
-      setMessages((current) => [
+      setAttachedFiles((current) => [
         ...current,
         {
-          id: crypto.randomUUID(),
-          author: "ResearchOS",
-          content: `Attached ${uploaded.filename} (${uploaded.status}).`,
-          tone: "system"
+          ...uploaded,
+          downloadUrl: fileDownloadUrl(uploaded.id)
         }
       ]);
     } catch (error) {
@@ -134,6 +135,7 @@ export function WorkspaceShell({ projectId }: WorkspaceShellProps) {
             onSendMessage={handleSendMessage}
             onFileSelected={handleFileSelected}
             isUploadingFile={isUploadingFile}
+            attachedFiles={attachedFiles}
             error={error}
           />
         </div>

@@ -47,6 +47,10 @@ export type FileResponse = {
   status: string;
 };
 
+export type AttachedFile = FileResponse & {
+  downloadUrl: string;
+};
+
 type MessageListResponse = {
   items: MessageResponse[];
 };
@@ -137,6 +141,10 @@ export async function uploadProjectFile(projectId: string, file: File): Promise<
     throw new Error(message);
   }
   return (await response.json()) as FileResponse;
+}
+
+export function fileDownloadUrl(fileId: string): string {
+  return `${API_BASE_URL}/files/${fileId}/download`;
 }
 
 export async function streamChatMessage(
