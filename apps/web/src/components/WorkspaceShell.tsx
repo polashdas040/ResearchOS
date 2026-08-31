@@ -25,6 +25,7 @@ export function WorkspaceShell({ projectId }: WorkspaceShellProps) {
   const [conversationId, setConversationId] = React.useState<string | null>(null);
   const [messages, setMessages] = React.useState<ChatMessage[]>(demoMessages);
   const [error, setError] = React.useState<string | null>(null);
+  const [isUploadingFile, setIsUploadingFile] = React.useState(false);
 
   React.useEffect(() => {
     let ignore = false;
@@ -102,6 +103,7 @@ export function WorkspaceShell({ projectId }: WorkspaceShellProps) {
 
   async function handleFileSelected(file: File) {
     setError(null);
+    setIsUploadingFile(true);
     try {
       const uploaded = await uploadProjectFile(projectId, file);
       setMessages((current) => [
@@ -115,6 +117,8 @@ export function WorkspaceShell({ projectId }: WorkspaceShellProps) {
       ]);
     } catch (error) {
       setError(error instanceof Error ? error.message : "Could not upload file.");
+    } finally {
+      setIsUploadingFile(false);
     }
   }
 
@@ -129,6 +133,7 @@ export function WorkspaceShell({ projectId }: WorkspaceShellProps) {
             messages={messages}
             onSendMessage={handleSendMessage}
             onFileSelected={handleFileSelected}
+            isUploadingFile={isUploadingFile}
             error={error}
           />
         </div>
