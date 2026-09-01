@@ -21,6 +21,7 @@ def client() -> Generator[TestClient]:
     project_repository = InMemoryProjectRepository()
     file_repository = InMemoryFileRepository()
     object_storage = InMemoryObjectStorage()
+    app.state.test_object_storage = object_storage
     app.dependency_overrides[get_auth_repository] = lambda: auth_repository
     app.dependency_overrides[get_project_repository] = lambda: project_repository
     app.dependency_overrides[get_file_repository] = lambda: file_repository
@@ -68,6 +69,28 @@ def test_duplicate_hash_is_recorded(client: TestClient) -> None:
 
     assert first["sha256"] == second["sha256"]
     assert second["duplicate_of_file_id"] == first["id"]
+
+
+def test_same_file_can_be_uploaded_twice_and_records_duplicate(client: TestClient) -> None:
+    headers = auth_headers(client, "same-file@example.com", "Same File Lab")
+    project = client.post("/projects", json={"name": "Same File Project"}, headers=headers).json()
+
+    first = upload_file(client, project["id"], headers, "paper.txt", b"same")
+    second = upload_file(client, project["id"], headers, "paper.txt", b"same")
+
+    assert second["duplicate_of_file_id"] == first["id"]
+    assert second["id"] != first["id"]
+
+
+def test_same_file_uploads_use_unique_storage_keys(client: TestClient) -> None:
+    headers = auth_headers(client, "same-key@example.com", "Same Key Lab")
+    project = client.post("/projects", json={"name": "Same Key Project"}, headers=headers).json()
+
+    upload_file(client, project["id"], headers, "paper.txt", b"same")
+    upload_file(client, project["id"], headers, "paper.txt", b"same")
+
+    storage = app.state.test_object_storage
+    assert len(storage.objects) == 2
 
 
 def test_invalid_mime_is_rejected(client: TestClient) -> None:

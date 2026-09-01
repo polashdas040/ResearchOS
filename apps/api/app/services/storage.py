@@ -21,3 +21,7 @@ class InMemoryObjectStorage:
 
     async def delete_object(self, key: str) -> None:
         self._objects.pop(key, None)
+
+    @property
+    def objects(self) -> dict[str, bytes]:
+        return self._objects.copy()

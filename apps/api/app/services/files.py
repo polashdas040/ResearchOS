@@ -1,6 +1,6 @@
 import hashlib
 import re
-from uuid import UUID
+from uuid import UUID, uuid4
 
 from apps.api.app.domain.files.models import ProjectFile
 from apps.api.app.domain.users.models import User
@@ -52,7 +52,9 @@ class FileService:
             project.organization_id,
             sha256,
         )
-        storage_key = f"{project.organization_id}/{project.id}/{sha256}/{safe_filename}"
+        storage_key = (
+            f"{project.organization_id}/{project.id}/{sha256}/{uuid4()}/{safe_filename}"
+        )
         await self._object_storage.put_object(storage_key, content, content_type)
         return await self._file_repository.create_file(
             project_id=project.id,
