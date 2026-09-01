@@ -5,6 +5,7 @@ from apps.api.app.db.models.auth import (
     UserRecord,
 )
 from apps.api.app.db.models.documents import DocumentElementRecord, DocumentRecord
+from apps.api.app.db.models.figures import FigureRecord
 from apps.api.app.db.models.files import FileRecord
 from apps.api.app.db.models.jobs import JobRecord
 from apps.api.app.db.models.projects import ConversationRecord, MessageRecord, ProjectRecord
@@ -20,6 +21,7 @@ __all__ = [
     "ConversationRecord",
     "DocumentElementRecord",
     "DocumentRecord",
+    "FigureRecord",
     "FileRecord",
     "JobRecord",
     "MembershipRecord",
