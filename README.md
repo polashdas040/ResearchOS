@@ -1,6 +1,6 @@
 # ResearchOS
 
-ResearchOS is a production-grade autonomous AI research problem-solving platform. The current platform includes the development foundation through PLAN 06 durable background jobs.
+ResearchOS is a production-grade autonomous AI research problem-solving platform. The current platform includes the development foundation through PLAN 07 scientific document intelligence.
 
 ## Local Development
 
@@ -27,5 +27,6 @@ ResearchOS is a production-grade autonomous AI research problem-solving platform
 - PLAN 04: login, registration, projects, project workspace, settings, billing, ChatGPT-style research chat shell, conversation navigation, run progress, attachment control, and artifact panel.
 - PLAN 05: tenant-scoped file upload, listing, download, deletion, SHA-256 hashing, MIME/extension validation, duplicate tracking, and storage-provider abstraction.
 - PLAN 06: PostgreSQL-backed durable job records, job creation/status API, idempotency keys, retry state, and worker job runner.
+- PLAN 07: structured scientific PDF document schema, deterministic parser adapter, document/element persistence, and worker parse handler.
 
 This project intentionally does not yet include retrieval, agents, real billing transactions, research runtime behavior, or a production LLM provider adapter.
