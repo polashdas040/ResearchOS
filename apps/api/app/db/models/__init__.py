@@ -5,12 +5,14 @@ from apps.api.app.db.models.auth import (
     UserRecord,
 )
 from apps.api.app.db.models.files import FileRecord
+from apps.api.app.db.models.jobs import JobRecord
 from apps.api.app.db.models.projects import ConversationRecord, MessageRecord, ProjectRecord
 from apps.api.app.db.models.usage import ModelUsageEventRecord
 
 __all__ = [
     "ConversationRecord",
     "FileRecord",
+    "JobRecord",
     "MembershipRecord",
     "MessageRecord",
     "ModelUsageEventRecord",
