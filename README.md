@@ -10,8 +10,8 @@ flowchart TD
     goal --> intent[Intent and Constraint Extraction]
     intent --> state[Research World Model]
     state --> planner[Dynamic Planner]
-    planner --> graph[Task Graph]
-    graph --> scheduler[Parallel Task Scheduler]
+    planner --> taskGraph[Task Graph]
+    taskGraph --> scheduler[Parallel Task Scheduler]
 
     scheduler --> literature[Scientific Literature Agent]
     scheduler --> documents[Document Intelligence]
