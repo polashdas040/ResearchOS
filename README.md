@@ -1,6 +1,6 @@
 # ResearchOS
 
-ResearchOS is a production-grade autonomous AI research problem-solving platform. The current platform includes the development foundation through PLAN 12 hybrid scientific retrieval.
+ResearchOS is a production-grade autonomous AI research problem-solving platform. The current platform includes the development foundation through PLAN 13 reranking and evidence packs.
 
 ## Target Architecture
 
@@ -84,5 +84,6 @@ ResearchOS is designed as an evidence-first research runtime. PostgreSQL owns tr
 - PLAN 10: semantic chunking around structured document elements with tenant, project, page, section, and source-element metadata.
 - PLAN 11: vector store interface, Chroma-compatible implementation, and tenant/project-scoped semantic vector search.
 - PLAN 12: dense retrieval, lexical retrieval, and reciprocal-rank-fused hybrid scientific retrieval.
+- PLAN 13: deterministic reranking adapter boundary and serializable EvidencePack construction with source/page/section preservation.
 
-This project intentionally does not yet include reranking, evidence packs, agents, real billing transactions, research runtime behavior, or a production LLM provider adapter.
+This project intentionally does not yet include citation-first answer generation, agents, real billing transactions, research runtime behavior, or a production LLM provider adapter.
