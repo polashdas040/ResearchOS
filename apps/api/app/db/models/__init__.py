@@ -4,6 +4,7 @@ from apps.api.app.db.models.auth import (
     RefreshTokenRecord,
     UserRecord,
 )
+from apps.api.app.db.models.chunks import SemanticChunkRecord
 from apps.api.app.db.models.documents import DocumentElementRecord, DocumentRecord
 from apps.api.app.db.models.figures import FigureRecord
 from apps.api.app.db.models.files import FileRecord
@@ -30,6 +31,7 @@ __all__ = [
     "OrganizationRecord",
     "ProjectRecord",
     "RefreshTokenRecord",
+    "SemanticChunkRecord",
     "TableCellRecord",
     "TableColumnRecord",
     "TableRecord",
