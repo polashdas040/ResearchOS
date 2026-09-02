@@ -2,6 +2,57 @@
 
 ResearchOS is a production-grade autonomous AI research problem-solving platform. The current platform includes the development foundation through PLAN 11 vector retrieval.
 
+## Target Architecture
+
+```mermaid
+flowchart TD
+    user[Researcher] --> goal[Research Goal]
+    goal --> intent[Intent and Constraint Extraction]
+    intent --> state[Research World Model]
+    state --> planner[Dynamic Planner]
+    planner --> graph[Task Graph]
+    graph --> scheduler[Parallel Task Scheduler]
+
+    scheduler --> literature[Scientific Literature Agent]
+    scheduler --> documents[Document Intelligence]
+    scheduler --> data[Dataset Intelligence]
+    scheduler --> code[Sandboxed Code Agent]
+    scheduler --> critic[Scientific Critic]
+
+    literature --> tools[Tool Policy Gateway]
+    documents --> tools
+    data --> tools
+    code --> tools
+    critic --> tools
+
+    tools --> rag[RAG and Retrieval]
+    tools --> search[Literature Search]
+    tools --> storage[Files and Object Storage]
+    tools --> sandbox[Python Execution Sandbox]
+    tools --> postgres[(PostgreSQL Source of Truth)]
+    tools --> redis[(Redis Coordination)]
+    tools --> chroma[(Vector Store)]
+
+    rag --> observations[Observations]
+    search --> observations
+    storage --> observations
+    sandbox --> observations
+    postgres --> observations
+    redis --> observations
+    chroma --> observations
+
+    observations --> verification[Verification Engine]
+    verification --> decision{Evidence sufficient?}
+    decision -- No --> repair[Repair and Replanning]
+    repair --> planner
+    decision -- Yes --> artifacts[Research Artifacts]
+    artifacts --> memory[Project Memory]
+    memory --> answer[Evidence-Grounded Answer]
+    answer --> user
+```
+
+ResearchOS is designed as an evidence-first research runtime. PostgreSQL owns transactional state, object storage owns uploaded binaries, Redis coordinates background work, and vector storage supports semantic retrieval without becoming the application database. Agents produce structured results that move through verification before claims, artifacts, and final answers are shown to the researcher.
+
 ## Local Development
 
 1. Copy `.env.example` to `.env`.
