@@ -1,6 +1,6 @@
 # ResearchOS
 
-ResearchOS is a production-grade autonomous AI research problem-solving platform. The current platform includes the development foundation through PLAN 10 semantic chunking.
+ResearchOS is a production-grade autonomous AI research problem-solving platform. The current platform includes the development foundation through PLAN 11 vector retrieval.
 
 ## Local Development
 
@@ -31,5 +31,6 @@ ResearchOS is a production-grade autonomous AI research problem-solving platform
 - PLAN 08: structured scientific table extraction, normalized table/row/column/cell persistence, and simple structure-based table QA.
 - PLAN 09: scientific figure extraction, VLM adapter boundary, structured figure descriptions, and tenant-scoped persistence.
 - PLAN 10: semantic chunking around structured document elements with tenant, project, page, section, and source-element metadata.
+- PLAN 11: vector store interface, Chroma-compatible implementation, and tenant/project-scoped semantic vector search.
 
 This project intentionally does not yet include retrieval, agents, real billing transactions, research runtime behavior, or a production LLM provider adapter.
