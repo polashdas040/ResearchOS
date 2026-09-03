@@ -6,6 +6,11 @@ from apps.api.app.db.models.auth import (
 )
 from apps.api.app.db.models.chunks import SemanticChunkRecord
 from apps.api.app.db.models.documents import DocumentElementRecord, DocumentRecord
+from apps.api.app.db.models.evidence import (
+    ClaimEvidenceLinkRecord,
+    ClaimRecord,
+    EvidenceRecord,
+)
 from apps.api.app.db.models.figures import FigureRecord
 from apps.api.app.db.models.files import FileRecord
 from apps.api.app.db.models.jobs import JobRecord
@@ -20,8 +25,11 @@ from apps.api.app.db.models.usage import ModelUsageEventRecord
 
 __all__ = [
     "ConversationRecord",
+    "ClaimEvidenceLinkRecord",
+    "ClaimRecord",
     "DocumentElementRecord",
     "DocumentRecord",
+    "EvidenceRecord",
     "FigureRecord",
     "FileRecord",
     "JobRecord",
