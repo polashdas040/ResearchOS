@@ -1,6 +1,6 @@
 # ResearchOS
 
-ResearchOS is a production-grade autonomous AI research problem-solving platform. The current platform includes the development foundation through PLAN 15 evidence and claim graph.
+ResearchOS is a production-grade autonomous AI research problem-solving platform. The current platform includes the development foundation through PLAN 16 dataset intelligence.
 
 ## Target Architecture
 
@@ -87,5 +87,6 @@ ResearchOS is designed as an evidence-first research runtime. PostgreSQL owns tr
 - PLAN 13: deterministic reranking adapter boundary and serializable EvidencePack construction with source/page/section preservation.
 - PLAN 14: citation-first answer composition with structured claims and citation validation against EvidencePack items.
 - PLAN 15: PostgreSQL-backed claim/evidence graph with support, contradiction, provenance traversal, and tenant-scoped repository access.
+- PLAN 16: deterministic CSV dataset profiling with types, missingness, duplicates, summary statistics, correlations, leakage hints, and longitudinal visit summaries.
 
-This project intentionally does not yet include agents, dataset intelligence, real billing transactions, research runtime behavior, or a production LLM provider adapter.
+This project intentionally does not yet include agents, long-term memory, real billing transactions, research runtime behavior, or a production LLM provider adapter.
