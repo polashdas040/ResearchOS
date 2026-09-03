@@ -6,6 +6,7 @@ import { AttachedFile } from "../lib/api-client";
 type MessageComposerProps = {
   onSubmit: (content: string) => Promise<void>;
   onFileSelected?: (file: File) => Promise<void>;
+  onOpenFile?: (fileId: string) => Promise<void>;
   isUploadingFile?: boolean;
   attachedFiles?: AttachedFile[];
 };
@@ -13,6 +14,7 @@ type MessageComposerProps = {
 export function MessageComposer({
   onSubmit,
   onFileSelected,
+  onOpenFile,
   isUploadingFile = false,
   attachedFiles = []
 }: MessageComposerProps) {
@@ -39,16 +41,15 @@ export function MessageComposer({
         {attachedFiles.length > 0 ? (
           <div className="mb-2 flex flex-wrap gap-2">
             {attachedFiles.map((file) => (
-              <a
+              <button
                 key={file.id}
-                href={file.downloadUrl}
-                target="_blank"
-                rel="noreferrer"
+                type="button"
+                onClick={() => void onOpenFile?.(file.id)}
                 className="rounded border border-[#c5cfda] bg-[#f8fafc] px-3 py-2 text-xs font-medium text-[#25313d]"
               >
                 <span>{file.filename}</span>
                 <span className="ml-2 text-[#176b5b]">{file.status}</span>
-              </a>
+              </button>
             ))}
           </div>
         ) : null}

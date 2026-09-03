@@ -8,6 +8,7 @@ type ChatThreadProps = {
   messages: ChatMessage[];
   onSendMessage: (content: string) => Promise<void>;
   onFileSelected?: (file: File) => Promise<void>;
+  onOpenFile?: (fileId: string) => Promise<void>;
   isUploadingFile?: boolean;
   attachedFiles?: AttachedFile[];
   error: string | null;
@@ -17,6 +18,7 @@ export function ChatThread({
   messages,
   onSendMessage,
   onFileSelected,
+  onOpenFile,
   isUploadingFile = false,
   attachedFiles = [],
   error
@@ -42,6 +44,7 @@ export function ChatThread({
       <MessageComposer
         onSubmit={onSendMessage}
         onFileSelected={onFileSelected}
+        onOpenFile={onOpenFile}
         isUploadingFile={isUploadingFile}
         attachedFiles={attachedFiles}
       />

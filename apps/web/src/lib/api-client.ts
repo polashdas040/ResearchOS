@@ -147,6 +147,25 @@ export function fileDownloadUrl(fileId: string): string {
   return `${API_BASE_URL}/files/${fileId}/download`;
 }
 
+export async function openProjectFile(fileId: string): Promise<void> {
+  const token = getStoredAccessToken();
+  if (!token) {
+    throw new Error("Please sign in first.");
+  }
+  const response = await fetch(fileDownloadUrl(fileId), {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  });
+  if (!response.ok) {
+    const message = await readErrorMessage(response);
+    throw new Error(message);
+  }
+  const blobUrl = window.URL.createObjectURL(await response.blob());
+  window.open(blobUrl, "_blank", "noreferrer");
+  window.URL.revokeObjectURL(blobUrl);
+}
+
 export async function streamChatMessage(
   conversationId: string,
   content: string,

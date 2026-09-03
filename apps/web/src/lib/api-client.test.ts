@@ -6,7 +6,8 @@ import {
   register,
   sendChatMessage,
   streamChatMessage,
-  uploadProjectFile
+  uploadProjectFile,
+  openProjectFile
 } from "./api-client";
 
 beforeEach(() => {
@@ -116,6 +117,35 @@ it("uploads project files with authorization", async () => {
       body: expect.any(FormData)
     })
   );
+});
+
+it("opens project files with authorization instead of using an unauthenticated link", async () => {
+  localStorage.setItem("researchos.access_token", "access-token");
+  const response = {
+    ok: true,
+    blob: async () => new Blob(["pdf"], { type: "application/pdf" })
+  } as Response;
+  const fetchMock = vi.fn(async () => response);
+  const openMock = vi.fn();
+  const createObjectURLMock = vi.fn(() => "blob:http://localhost/file-1");
+  const revokeObjectURLMock = vi.fn();
+  vi.stubGlobal("fetch", fetchMock as unknown as typeof fetch);
+  vi.stubGlobal("open", openMock);
+  vi.stubGlobal("URL", {
+    createObjectURL: createObjectURLMock,
+    revokeObjectURL: revokeObjectURLMock
+  });
+
+  await openProjectFile("file-1");
+
+  expect(fetchMock).toHaveBeenCalledWith(
+    "http://localhost:8000/files/file-1/download",
+    expect.objectContaining({
+      headers: { Authorization: "Bearer access-token" }
+    })
+  );
+  expect(openMock).toHaveBeenCalledWith("blob:http://localhost/file-1", "_blank", "noreferrer");
+  expect(revokeObjectURLMock).toHaveBeenCalledWith("blob:http://localhost/file-1");
 });
 
 function tokenResponse(): Response {

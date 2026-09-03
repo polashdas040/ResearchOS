@@ -8,14 +8,14 @@ import { ConversationSidebar } from "./ConversationSidebar";
 import { ProjectSidebar } from "./ProjectSidebar";
 import { ResearchRunPanel } from "./ResearchRunPanel";
 import {
+  AttachedFile,
   createConversation,
-  fileDownloadUrl,
   getConversation,
   getStoredAccessToken,
   listConversations,
+  openProjectFile,
   streamChatMessage,
-  uploadProjectFile,
-  AttachedFile
+  uploadProjectFile
 } from "../lib/api-client";
 import { ChatMessage, messages as demoMessages } from "./workspace-data";
 
@@ -113,7 +113,7 @@ export function WorkspaceShell({ projectId }: WorkspaceShellProps) {
         ...current,
         {
           ...uploaded,
-          downloadUrl: fileDownloadUrl(uploaded.id)
+          downloadUrl: ""
         }
       ]);
     } catch (error) {
@@ -136,6 +136,7 @@ export function WorkspaceShell({ projectId }: WorkspaceShellProps) {
             onFileSelected={handleFileSelected}
             isUploadingFile={isUploadingFile}
             attachedFiles={attachedFiles}
+            onOpenFile={openProjectFile}
             error={error}
           />
         </div>
