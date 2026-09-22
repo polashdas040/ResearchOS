@@ -205,19 +205,6 @@ npm --workspace apps/web run dev
 - `make migrate` applies Alembic migrations.
 - `make migration message="description"` creates a migration.
 
-## CV Summary
-
-**Project Description:** Developed ResearchOS, a full-stack, evidence-first multi-agent scientific research and academic writing platform. The system transforms research questions, PDFs, and datasets into traceable literature analyses, hypotheses, experiment plans, cited answers, and editable research documents.
-
-**Core Responsibilities:** Designed and implemented the end-to-end architecture, including multi-tenant APIs, scientific document intelligence, hybrid retrieval and RAG, evidence and citation verification, specialized research agents, LangGraph orchestration, sandboxed experiment execution, an editable academic writing workspace, automated testing, security controls, and containerized infrastructure.
-
-**Technology Stack:** Python, FastAPI, LangGraph, Pydantic, SQLAlchemy, PostgreSQL, Redis, Chroma, MinIO, Next.js, React, TypeScript, Tailwind CSS, Docker Compose, Pytest, Vitest, Ruff, MyPy, and GitHub Actions.
-
-### CV Achievement Bullets
-
-- Engineered an evidence-first research platform spanning document processing, RAG, agent orchestration, scientific verification, experiment tooling, and academic writing.
-- Built specialized agents for literature discovery, gap analysis, hypothesis generation, novelty assessment, feasibility review, scientific criticism, statistical review, and hypothesis ranking.
-- Developed a multi-tenant FastAPI and Next.js application backed by PostgreSQL, Redis, Chroma, and MinIO, with Docker-based local infrastructure and automated Python and React quality checks.
 - Implemented provenance-aware retrieval and citation workflows that preserve source, page, section, claim, and evidence relationships across generated research outputs.
 
 ## License
