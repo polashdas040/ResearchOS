@@ -1,0 +1,12 @@
+{
+  "name": "researchos",
+  "private": true,
+  "workspaces": [
+    "apps/web"
+  ],
+  "scripts": {
+    "test": "npm --workspace apps/web test",
+    "lint": "npm --workspace apps/web lint",
+    "format": "npm --workspace apps/web format"
+  }
+}

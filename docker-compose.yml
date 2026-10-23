@@ -1,0 +1,94 @@
+services:
+  api:
+    build:
+      context: .
+      dockerfile: infra/docker/api.Dockerfile
+    command: uvicorn apps.api.app.main:app --host 0.0.0.0 --port 8000
+    env_file: .env
+    environment:
+      RESEARCHOS_DATABASE_URL: postgresql+asyncpg://researchos:researchos@postgres:5432/researchos
+      RESEARCHOS_REDIS_URL: redis://redis:6379/0
+      RESEARCHOS_CHROMA_URL: http://chroma:8000
+      RESEARCHOS_OBJECT_STORAGE_ENDPOINT: http://minio:9000
+    ports:
+      - "8000:8000"
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/ready')"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    depends_on:
+      - postgres
+      - redis
+      - chroma
+      - minio
+
+  web:
+    build:
+      context: .
+      dockerfile: infra/docker/web.Dockerfile
+    command: npm --workspace apps/web run start
+    ports:
+      - "3000:3000"
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://localhost:3000').then(r => process.exit(r.ok ? 0 : 1)).catch(() => process.exit(1))"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    depends_on:
+      - api
+
+  worker:
+    build:
+      context: .
+      dockerfile: infra/docker/worker.Dockerfile
+    command: python -m apps.worker.app.main
+    env_file: .env
+    environment:
+      RESEARCHOS_DATABASE_URL: postgresql+asyncpg://researchos:researchos@postgres:5432/researchos
+      RESEARCHOS_REDIS_URL: redis://redis:6379/0
+      RESEARCHOS_CHROMA_URL: http://chroma:8000
+      RESEARCHOS_OBJECT_STORAGE_ENDPOINT: http://minio:9000
+    depends_on:
+      - postgres
+      - redis
+
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: researchos
+      POSTGRES_USER: researchos
+      POSTGRES_PASSWORD: researchos
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+
+  chroma:
+    image: chromadb/chroma:latest
+    ports:
+      - "8001:8000"
+    volumes:
+      - chroma-data:/chroma/chroma
+
+  minio:
+    image: minio/minio:latest
+    command: server /data --console-address ":9001"
+    environment:
+      MINIO_ROOT_USER: minioadmin
+      MINIO_ROOT_PASSWORD: minioadmin
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    volumes:
+      - minio-data:/data
+
+volumes:
+  postgres-data:
+  chroma-data:
+  minio-data:

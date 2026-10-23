@@ -1,0 +1,17 @@
+.env
+.superpowers/
+__pycache__/
+*.pyc
+data/
+saves
+str
+node_modules/
+frontend/node_modules/
+frontend/dist/
+apps/web/.next/
+apps/web/tsconfig.tsbuildinfo
+.pytest-tmp/
+.pytest_cache/
+pytest-cache-files-*/
+.worktrees/
+*.egg-info/
