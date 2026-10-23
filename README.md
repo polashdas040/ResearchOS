@@ -19,9 +19,9 @@ The current application is an engineering prototype, not a fully autonomous rese
 
 ## Architecture
 
-![ResearchOS evidence-grounded multi-agent architecture](docs/assets/researchos-architecture.svg)
+![ResearchOS illustrated multi-agent architecture](docs/assets/researchos-architecture-illustrated.svg)
 
-[Download the vector PDF architecture](docs/assets/researchos-architecture.pdf). The SVG and PDF remain sharp when zoomed.
+[Download the illustrated vector PDF](docs/assets/researchos-architecture-illustrated.pdf), or open the detailed technical architecture as [SVG](docs/assets/researchos-architecture.svg) or [PDF](docs/assets/researchos-architecture.pdf). All formats remain sharp when zoomed.
 
 The main workflow is:
 
