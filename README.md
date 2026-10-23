@@ -212,19 +212,7 @@ npm --workspace apps/web run dev
 - `make migrate` applies Alembic migrations.
 - `make migration message="description"` creates a migration.
 
-## CV Summary
-
-**Project Description:** ResearchOS is a full-stack, evidence-first multi-agent platform for scientific research and academic writing. It transforms research questions, PDFs, and datasets into traceable analyses, hypotheses, cited answers, experiments, and editable research documents.
-
-**Core Responsibilities:**
-
-- Designed a full-stack monorepo architecture for the API, web application, background worker, and shared research packages.
-- Built authentication, tenant security, project management, persistent conversations, file storage, durable jobs, scientific document parsing, semantic chunking, vector search, hybrid retrieval, reranking, and citation verification.
-- Developed LangGraph-based orchestration and specialized agents for literature discovery, gap analysis, hypothesis generation, novelty assessment, feasibility review, scientific criticism, statistical review, and experiment workflows.
-- Created a responsive research and writing workspace with streaming chat, attachments, editable document sections, contextual sentence generation, IEEE-style references, artifacts, and visible research-run progress.
-
-**Technology Stack:** Python, FastAPI, LangGraph, Pydantic, SQLAlchemy, Alembic, PostgreSQL, Redis, Chroma, MinIO, Next.js, React, TypeScript, Tailwind CSS, Docker Compose, Pytest, Vitest, Ruff, MyPy, and GitHub Actions.
-
 ## License
 
 No license has been published for this repository yet. All rights are reserved unless a license file is added.
+
