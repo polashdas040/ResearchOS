@@ -1,105 +1,123 @@
 # ResearchOS
 
-ResearchOS is an evidence-first, multi-agent platform for scientific research and academic writing. It combines document intelligence, hybrid retrieval, research agents, verification, experiment tooling, and an editable writing workspace in one system.
+ResearchOS is a full-stack research and academic-writing workspace for building evidence-grounded documents with AI assistance. It combines project organization, source management, scholarly search, retrieval, specialized research agents, citation-aware generation, and an editable manuscript in one interface.
 
-The repository currently contains a working full-stack foundation with a Next.js research workspace, a FastAPI backend, durable data models, background workers, model-provider adapters, scientific document processing, and tested agent workflows. The long-term goal is to turn a research question, paper, or dataset into a traceable workflow whose claims remain connected to evidence.
+The current application is an engineering prototype, not a fully autonomous researcher. It supports end-to-end local workflows while keeping model providers, scholarly search providers, object storage, vector search, and agent tools behind replaceable interfaces.
 
-## Project Highlights
+## Current Product
 
-- Built a multi-tenant research platform with authentication, projects, conversations, file attachments, streaming chat, background jobs, and artifact tracking.
-- Implemented scientific PDF, table, figure, and dataset processing with structured metadata and source provenance.
-- Developed hybrid dense and lexical retrieval, reranking, evidence packs, citation-first answers, and claim verification.
-- Created specialized agents for literature discovery, gap analysis, hypothesis generation, novelty auditing, feasibility review, scientific criticism, statistical review, and hypothesis ranking.
-- Added a LangGraph-based research runtime with planning, task scheduling, repair and replanning, resumable execution, and observable agent progress.
-- Built an academic writing workspace with editable sections, section-specific prompts, contextual sentence generation, IEEE-style references, and AI-assisted drafting.
-- Added guarded tool execution, MCP-compatible tool discovery, sandboxed Python execution, experiment provenance, budget controls, and security validation.
-
-## Development Summary
-
-The core engineering foundation is implemented across the frontend, backend, research runtime, document pipeline, retrieval system, scientific agents, experiment tooling, and academic writing workspace. The repository includes automated tests and architecture documentation for these capabilities.
-
-Production hardening and real-world evaluation are still in progress. The next phase focuses on deeper end-to-end agent integration, stronger document parsing, live scholarly data providers, collaborative writing, broader evaluation, and production operations.
+- Create, rename, and delete research projects and persistent conversations.
+- Import PDF, CSV, JSON, text, and image files into a reusable project Library.
+- Search for scholarly papers and save an open-access PDF or, when a PDF is unavailable, save the paper summary and metadata.
+- Build a structured manuscript with Introduction, Literature Review, Methodology, Results, Discussion, and Conclusion sections.
+- Generate one connected sentence at a time using the current document, section prompt, selected sources, and retrieved literature.
+- Accept, regenerate, or dismiss a sentence before it becomes part of the draft.
+- Display only references that are actually cited in the manuscript.
+- Format citations and references as **IEEE**, **APA 7**, **Harvard**, or **MLA 9**.
+- Chat about the current project and its sources, edit and resubmit prompts, attach files, and view the active research agent.
+- Export the formatted manuscript as a Word-compatible `.doc` file or through the browser's Save as PDF workflow.
 
 ## Architecture
 
-![ResearchOS full model architecture](docs/assets/researchos-architecture.svg)
+![ResearchOS evidence-grounded multi-agent architecture](docs/assets/researchos-architecture.svg)
 
-[Download the vector PDF architecture](docs/assets/researchos-architecture.pdf). Both formats remain sharp when zoomed.
+[Download the vector PDF architecture](docs/assets/researchos-architecture.pdf). The SVG and PDF remain sharp when zoomed.
 
-PostgreSQL is the source of truth for transactional records. MinIO stores uploaded binaries, Redis supports coordination and background work, and Chroma provides semantic retrieval. Generated claims pass through evidence and verification layers before they are presented as research output.
+The main workflow is:
+
+1. Research questions and imported sources enter the document-intelligence pipeline.
+2. Parsed content is semantically chunked and indexed with source provenance.
+3. Dense and lexical retrieval are fused into traceable evidence packs.
+4. Specialized agents perform literature analysis, gap analysis, hypothesis generation, novelty review, feasibility review, scientific criticism, statistical review, ranking, and code-oriented evaluation.
+5. Claims and citations are checked before generated text is presented to the researcher.
+6. Accepted text, references, conversations, and research state remain scoped to the current organization and project.
+
+PostgreSQL stores transactional records. MinIO stores uploaded binaries, Redis supports coordination, and Chroma provides vector retrieval. The API, worker, web application, and shared research packages are maintained in one monorepo.
 
 ## Product Screenshots
 
-| Project management | Research document setup |
+| Project management | Document setup and source selection |
 | --- | --- |
-| ![ResearchOS project management](docs/assets/screenshots/02-project-management.png) | ![ResearchOS research document setup](docs/assets/screenshots/03-document-setup.png) |
+| ![ResearchOS project management](docs/assets/screenshots/02-project-management.png) | ![ResearchOS document setup](docs/assets/screenshots/03-document-setup.png) |
 
-### Academic Writing Workspace
+### Citation-Aware Draft Generation
 
-![ResearchOS academic writing workspace](docs/assets/screenshots/04-research-workspace.png)
+The editor uses the active section prompt and existing manuscript context to produce connected text. Accepted citations are reflected in the manuscript reference list.
 
-## What Is Already Built
+![ResearchOS generated academic draft with inline citations](docs/assets/screenshots/04-cited-draft.png)
+
+### Research Chat with References
+
+The research assistant can generate a source-grounded answer, show the active agent, and return a formatted reference list using the selected citation style.
+
+![ResearchOS chatbot response with inline citations and references](docs/assets/screenshots/05-chatbot-citations.png)
+
+## Implemented Features
 
 ### Research Workspace
 
-- Registration, login, bearer-token authentication, token rotation, logout, and tenant authorization.
-- Organization-scoped projects, persistent conversations, typed messages, pagination, and soft deletion.
-- A responsive Next.js workspace with project navigation, streaming chat, attachments, research-run status, artifact views, and visible agent progress.
-- An editable academic document canvas with section prompts for introductions, literature reviews, methodology, results, discussion, and conclusions.
-- Context-aware sentence suggestions with accept, reject, and regenerate controls, plus IEEE-style reference output.
+- Account registration, login, access and refresh tokens, logout, and organization-scoped authorization.
+- Project and conversation creation, editing, deletion, pagination, and PostgreSQL persistence.
+- Scrollable project navigation and chat history with an option to load earlier messages.
+- Editable user prompts that can be resubmitted to regenerate an answer.
+- Streaming assistant output and a compact current-agent status panel.
+- Project Library with import, selection, download, and deletion controls.
+
+### Academic Editor
+
+- Section-specific prompts and context configuration.
+- Sentence-level generation that reads the current draft before producing a continuation.
+- Accept, regenerate, and dismiss controls for generated suggestions.
+- Automatic citation ordering and a References section containing only cited sources.
+- IEEE, APA 7, Harvard, and MLA 9 citation and bibliography formatting.
+- Paragraph and heading styles, multiple font families, font sizes from 8 to 32 points, bold, italic, underline, and strike-through formatting.
+- Editable tables with row, column, and table insertion or deletion controls.
+- Local image insertion with left, center, and right alignment.
+- Equation insertion, undo and redo, document review, autocomplete control, and export.
 
 ### Documents and Retrieval
 
-- Validated file upload, download, listing, deletion, duplicate detection, and storage-provider abstraction.
-- Structured PDF parsing with page, section, element, table, and figure metadata.
-- Semantic chunking that preserves tenant, project, page, section, and source-element provenance.
-- Dense and lexical search combined through reciprocal-rank fusion.
-- Reranking and serializable evidence packs that retain source and page information.
-- CSV dataset profiling for inferred types, missing values, duplicates, descriptive statistics, correlations, leakage hints, and longitudinal visits.
+- Validated file upload, listing, download, deletion, and duplicate detection.
+- PDF parsing with page, section, table, figure, and source metadata.
+- Semantic chunking that retains tenant, project, document, page, and section provenance.
+- Dense and lexical retrieval combined through reciprocal-rank fusion and reranking.
+- Evidence packs that keep retrieved content connected to its source.
+- Project-scoped scholarly search with deduplication, filtering, and reference metadata.
 
-### Research Intelligence
+### Research Agents and Verification
 
-- Scientific literature search behind provider-neutral interfaces with query expansion, filtering, deduplication, caching, and stable ranking.
-- Evidence-grounded gap analysis and structured hypothesis generation with falsification criteria.
-- Hypothesis lineage, mutation, combination, specialization, rejection, and ancestor traversal.
-- Novelty, feasibility, scientific critic, statistical reviewer, and hypothesis tournament agents.
-- Claim and evidence graphs supporting provenance, contradiction detection, and citation validation.
-- Citation-first answer composition that rejects unsupported evidence references.
-
-### Agent Runtime and Tools
-
-- LangGraph-compatible research orchestration with context compilation, planning, scheduling, bounded retries, repair, and resumable runs.
-- Risk-classified tool execution with approval checks, rejection handling, audit records, and tenant-bound authorization.
-- MCP-compatible typed tool discovery and execution through the same policy gateway.
-- Sandboxed Python execution with disabled networking, resource limits, timeouts, read-only container roots, and structured outputs.
-- Experiment specifications, append-only runs, code and dataset provenance, reproducibility records, and statistical checks.
-- OpenAI, OpenAI-compatible, and Ollama model gateways, including a deterministic local provider for development and tests.
+- Literature discovery and evidence synthesis.
+- Research-gap analysis and structured hypothesis generation.
+- Hypothesis lineage, mutation, combination, specialization, and rejection.
+- Novelty, feasibility, scientific-critic, statistical-reviewer, tournament, and code-agent modules.
+- Context compilation, dynamic planning, task scheduling, retry, repair, and resumable run models.
+- Claim-to-evidence validation, contradiction checks, and citation verification.
+- OpenAI, OpenAI-compatible, Ollama, and deterministic development model adapters.
 
 ### Platform Engineering
 
-- FastAPI application services, SQLAlchemy async persistence, Alembic migrations, and worker-based durable jobs.
-- Immutable credit ledger, resource metering, budget-aware planning, and verified payment-webhook foundations.
-- Prompt-injection, tenant-scope, object-path, SSRF, and high-risk tool security checks.
-- Correlated observability events and evaluation models for retrieval, citations, latency, cost, recovery, and task completion.
-- Docker Compose development environment for the API, web application, worker, PostgreSQL, Redis, Chroma, and MinIO.
-- Python and React test suites, strict MyPy configuration, Ruff checks, TypeScript checks, and CI configuration.
+- FastAPI services, SQLAlchemy async persistence, Alembic migrations, and a background worker.
+- Tenant-scoped storage paths and authorization checks.
+- Docker Compose services for the web application, API, worker, PostgreSQL, Redis, Chroma, and MinIO.
+- Pytest and Vitest suites, Ruff, strict MyPy, TypeScript checks, and GitHub Actions configuration.
 
-## Current Status
+## Citation Behavior
 
-ResearchOS is an actively developed engineering prototype. Its core domain models, services, agents, API routes, workspace, and automated tests are implemented. Several external systems use adapter boundaries or deterministic implementations so the platform remains reproducible during development.
+Citation style is selected independently for the document editor and research chat. The available styles are:
 
-The project should not yet be described as a fully production-deployed autonomous researcher. Production model credentials, live literature-provider accounts, infrastructure hardening, large-scale evaluation, and end-user acceptance testing are still required.
+| Style | Example in-text citation |
+| --- | --- |
+| IEEE | `[1]` |
+| APA 7 | `(Smith, 2025)` |
+| Harvard | `(Smith 2025)` |
+| MLA 9 | `(Smith)` |
 
-## Next Development Priorities
+The source catalog and the manuscript bibliography are intentionally different:
 
-- Connect every specialized research agent to the end-to-end workspace flow and persist all generated document revisions.
-- Improve sentence-level generation so each suggestion uses the accepted document context, retrieved evidence, and non-duplicative continuation logic.
-- Add live scholarly search integrations and stronger bibliographic metadata validation for IEEE and additional citation styles.
-- Expand PDF parsing quality for complex layouts, equations, scanned documents, tables, and figure references.
-- Replace remaining deterministic adapters with production retrieval, reranking, model, payment, and remote-agent integrations where appropriate.
-- Add collaborative editing, autosave, document import/export, reference management, and version comparison.
-- Run larger retrieval, citation, agent-quality, security, load, and recovery evaluations against representative scientific corpora.
-- Complete production deployment automation, secret management, backups, monitoring, and operational runbooks.
+- **Available sources** are files or papers that can be used as evidence.
+- **References** are the subset of those sources that are cited in accepted draft text.
+
+This prevents the References section from listing every uploaded or discovered source when the manuscript has not used it.
 
 ## Technology Stack
 
@@ -107,45 +125,41 @@ The project should not yet be described as a fully production-deployed autonomou
 | --- | --- |
 | Frontend | Next.js 15, React 19, TypeScript, Tailwind CSS, Vitest, Testing Library |
 | Backend | Python 3.12, FastAPI, Pydantic, SQLAlchemy Async, Alembic |
-| Agent runtime | LangGraph, typed research-agent services, model gateway adapters |
-| Data and retrieval | PostgreSQL, Redis, Chroma, MinIO, hybrid lexical and vector retrieval |
-| AI providers | OpenAI, OpenAI-compatible APIs, Ollama, deterministic local test provider |
-| Infrastructure | Docker Compose, background worker service, GitHub Actions |
+| Agent runtime | LangGraph, typed research-agent services, provider gateways |
+| Data and retrieval | PostgreSQL, Redis, Chroma, MinIO, dense and lexical retrieval |
+| Model adapters | OpenAI, OpenAI-compatible APIs, Ollama, deterministic local provider |
+| Infrastructure | Docker Compose, background worker, GitHub Actions |
 | Quality | Pytest, Ruff, strict MyPy, TypeScript compiler checks |
 
 ## Repository Structure
 
 ```text
 apps/
-  api/                 FastAPI routes, services, repositories, domain models, and tests
-  web/                 Next.js research and academic writing workspace
-  worker/              Durable background-job execution
+  api/                 FastAPI routes, services, persistence, and tests
+  web/                 Research workspace and academic editor
+  worker/              Background-job execution
 packages/
-  agents/              Specialized scientific and research agents
-  billing/             Credit ledger, metering, budgets, and payments
+  agents/              Specialized scientific agents and workflows
+  billing/             Credits, metering, budgets, and payment foundations
   core/                Shared security and deployment policies
-  documents/           PDF, table, figure, and dataset intelligence
-  evaluation/          Reproducible system evaluation
+  documents/           PDF, table, figure, and dataset processing
+  evaluation/          Evaluation models and metrics
   execution/           Sandbox, experiments, repair, and reproducibility
   observability/       Structured runtime events
   rag/                 Chunking, retrieval, evidence packs, and cited answers
-  tools/               MCP and external integration gateways
+  tools/               MCP and external tool gateways
   verification/        Claim, evidence, and citation verification
-  writing/             Academic writing assistance
-docs/                  Architecture decisions and API documentation
-infra/docker/           API, web, and worker container images
+  writing/             Academic-writing services
+docs/                  Architecture, screenshots, API notes, and decisions
+infra/docker/          API, web, and worker container images
 migrations/            Alembic database migrations
-.github/workflows/      Continuous integration
-docker-compose.yml      Local PostgreSQL, Redis, Chroma, MinIO, API, worker, and web stack
-pyproject.toml          Python dependencies and quality-tool configuration
-package.json            JavaScript workspace commands
 ```
 
 ## Local Development
 
-### Quick Start with Docker
+### Docker Quick Start
 
-Docker Desktop with Docker Compose is the only prerequisite for the complete local stack. The default deterministic model provider works without an external API key.
+Docker Desktop with Docker Compose is the simplest way to run the complete local stack. The deterministic development provider can run without an external model API key.
 
 ```powershell
 git clone https://github.com/polashdas040/ResearchOS.git
@@ -161,26 +175,26 @@ On macOS or Linux, create the environment file with:
 cp .env.example .env
 ```
 
-After startup:
+Available services:
 
 - Web application: `http://localhost:3000`
 - API documentation: `http://localhost:8000/docs`
 - MinIO console: `http://localhost:9001`
 
-Check service status and logs:
+Check the stack:
 
 ```bash
 docker compose ps
 docker compose logs -f api web worker
 ```
 
-Stop the stack without deleting local data:
+Stop the stack without deleting development data:
 
 ```bash
 docker compose down
 ```
 
-Reset all local containers and persisted development data:
+Remove containers and local Docker volumes:
 
 ```bash
 docker compose down -v
@@ -188,7 +202,7 @@ docker compose down -v
 
 ### Run Without Docker
 
-This path requires Python 3.12+, Node.js 20+, and locally available PostgreSQL, Redis, Chroma, and S3-compatible object storage configured through `.env`.
+This path requires Python 3.12+, Node.js 20+, PostgreSQL, Redis, Chroma, and S3-compatible object storage configured in `.env`.
 
 ```bash
 pip install -e ".[dev]"
@@ -207,12 +221,19 @@ npm --workspace apps/web run dev
 
 - `make dev` starts the Docker Compose stack.
 - `make test` runs Python and web tests.
-- `make lint` runs Ruff, strict MyPy, and TypeScript checks.
+- `make lint` runs Ruff, MyPy, and TypeScript checks.
 - `make format` formats Python and web source files.
 - `make migrate` applies Alembic migrations.
 - `make migration message="description"` creates a migration.
 
+## Current Limitations
+
+- Quality depends on the configured model and scholarly-search providers.
+- Scanned or highly complex PDF layouts may require stronger OCR and layout extraction.
+- Collaboration, manuscript version comparison, and production deployment hardening are not complete.
+- Large-scale retrieval, citation-quality, security, load, and recovery evaluation remains ongoing.
+
 ## License
 
-No license has been published for this repository yet. All rights are reserved unless a license file is added.
+No license has been published for this repository. All rights are reserved unless a license file is added.
 
