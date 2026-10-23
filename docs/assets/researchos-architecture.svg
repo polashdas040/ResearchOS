@@ -1,89 +1,84 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="820" viewBox="0 0 1400 820" role="img" aria-labelledby="title desc">
-  <title id="title">ResearchOS evidence-grounded multi-agent architecture</title>
-  <desc id="desc">Paper-friendly architecture showing research inputs, document intelligence, hybrid retrieval, specialized research agents, verification, academic outputs, orchestration, and shared research memory.</desc>
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="980" viewBox="0 0 1600 980" role="img" aria-labelledby="title desc">
+  <title id="title">ResearchOS closed-loop multi-agent research architecture</title>
+  <desc id="desc">Publication-ready architecture showing human-guided orchestration, evidence ingestion and hybrid retrieval, a four-stage multi-agent scientific reasoning loop, claim verification, citation-aware writing, and a shared provenance data plane.</desc>
   <defs>
-    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#334155"/></marker>
-    <marker id="arrow-teal" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#0f766e"/></marker>
+    <marker id="arrow-navy" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#16324f"/></marker>
+    <marker id="arrow-teal" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#138a7e"/></marker>
+    <marker id="arrow-coral" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#d5654a"/></marker>
+    <filter id="shadow" x="-15%" y="-15%" width="130%" height="140%"><feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#16324f" flood-opacity="0.10"/></filter>
     <style>
-      .title{font:700 28px Arial,Helvetica,sans-serif;fill:#17212b}.subtitle{font:400 14px Arial,Helvetica,sans-serif;fill:#536273}
-      .band-title{font:700 15px Arial,Helvetica,sans-serif;fill:#17212b}.stage-no{font:700 12px Arial,Helvetica,sans-serif;fill:#fff}
-      .stage-title{font:700 16px Arial,Helvetica,sans-serif;fill:#17212b}.node-title{font:700 13px Arial,Helvetica,sans-serif;fill:#17212b}
-      .node-copy{font:400 11.5px Arial,Helvetica,sans-serif;fill:#536273}.tiny{font:400 10.5px Arial,Helvetica,sans-serif;fill:#5f6f7e}
-      .agent{font:600 11.5px Arial,Helvetica,sans-serif;fill:#17212b}.output{font:600 12px Arial,Helvetica,sans-serif;fill:#17212b}
-      .box{fill:#fff;stroke:#9aa9b7;stroke-width:1.25}.soft{fill:#f7f9fa;stroke:#c3ccd5;stroke-width:1.1}
-      .teal{fill:#eef8f6;stroke:#3a8f86;stroke-width:1.4}.control{fill:#f1f5f6;stroke:#7f919e;stroke-width:1.2}
-      .arrow{fill:none;stroke:#334155;stroke-width:1.6;marker-end:url(#arrow)}.feedback{fill:none;stroke:#0f766e;stroke-width:1.7;stroke-dasharray:7 5;marker-end:url(#arrow-teal)}
-      .memory-link{fill:none;stroke:#758697;stroke-width:1.1;stroke-dasharray:4 4}
+      .title{font:700 30px Arial,Helvetica,sans-serif;fill:#10283f}.subtitle{font:400 14px Arial,Helvetica,sans-serif;fill:#5b6d7f}
+      .eyebrow{font:700 11px Arial,Helvetica,sans-serif;letter-spacing:1.2px;fill:#5b6d7f}.section{font:700 17px Arial,Helvetica,sans-serif;fill:#10283f}
+      .node-title{font:700 13px Arial,Helvetica,sans-serif;fill:#10283f}.node-copy{font:400 11.5px Arial,Helvetica,sans-serif;fill:#5b6d7f}
+      .stage-no{font:700 11px Arial,Helvetica,sans-serif;fill:#fff}.stage-title{font:700 16px Arial,Helvetica,sans-serif;fill:#10283f}
+      .agent{font:600 12px Arial,Helvetica,sans-serif;fill:#10283f}.tiny{font:400 10.5px Arial,Helvetica,sans-serif;fill:#607487}
+      .pill{font:600 10.5px Arial,Helvetica,sans-serif;fill:#27445f}.center-title{font:700 17px Arial,Helvetica,sans-serif;fill:#fff}.center-copy{font:400 11px Arial,Helvetica,sans-serif;fill:#dce8f2}
+      .panel{fill:#fff;stroke:#c5d1dc;stroke-width:1.15}.panel-soft{fill:#f7f9fb;stroke:#d5dee6;stroke-width:1.05}
+      .node{fill:#fff;stroke:#bdcad5;stroke-width:1.1}.teal-node{fill:#eef9f7;stroke:#70afa8;stroke-width:1.2}.blue-node{fill:#f1f5ff;stroke:#88a9ec;stroke-width:1.2}
+      .amber-node{fill:#fff8e8;stroke:#d8b766;stroke-width:1.2}.coral-node{fill:#fff3ef;stroke:#d99887;stroke-width:1.2}
+      .primary{fill:none;stroke:#16324f;stroke-width:1.8;marker-end:url(#arrow-navy)}.evidence{fill:none;stroke:#138a7e;stroke-width:1.9;marker-end:url(#arrow-teal)}
+      .feedback{fill:none;stroke:#d5654a;stroke-width:1.8;stroke-dasharray:7 5;marker-end:url(#arrow-coral)}.data-link{fill:none;stroke:#8495a5;stroke-width:1.1;stroke-dasharray:4 4}
+      .cycle{fill:none;stroke:#7f91a1;stroke-width:2.2;marker-end:url(#arrow-navy)}
     </style>
   </defs>
-  <rect width="1400" height="820" fill="#fff"/>
-  <text x="700" y="42" text-anchor="middle" class="title">ResearchOS: Evidence-Grounded Multi-Agent Research Architecture</text>
-  <text x="700" y="67" text-anchor="middle" class="subtitle">Iterative evidence acquisition, scientific reasoning, verification, and citation-aware academic writing</text>
+  <rect width="1600" height="980" fill="#ffffff"/>
+  <text x="800" y="40" text-anchor="middle" class="title">ResearchOS: Closed-Loop, Evidence-Grounded Research Architecture</text>
+  <text x="800" y="65" text-anchor="middle" class="subtitle">Human-guided orchestration, adaptive retrieval, specialized scientific agents, and claim-level provenance</text>
+  <rect x="70" y="91" width="1460" height="116" rx="8" fill="#f3f6f8" stroke="#c5d1dc"/>
+  <text x="91" y="115" class="eyebrow">HUMAN-GUIDED CONTROL PLANE</text>
+  <rect x="92" y="130" width="255" height="55" rx="6" class="node" filter="url(#shadow)"/><circle cx="118" cy="157" r="12" fill="#16324f"/><text x="118" y="161" text-anchor="middle" class="stage-no">1</text><text x="140" y="152" class="node-title">Research Goal + Project Context</text><text x="140" y="170" class="node-copy">prompt, files, history, constraints</text>
+  <path d="M347 157H382" class="primary"/>
+  <rect x="382" y="130" width="235" height="55" rx="6" class="node" filter="url(#shadow)"/><circle cx="408" cy="157" r="12" fill="#2f6fed"/><text x="408" y="161" text-anchor="middle" class="stage-no">2</text><text x="430" y="152" class="node-title">Context Compiler</text><text x="430" y="170" class="node-copy">tenant scope and working memory</text>
+  <path d="M617 157H652" class="primary"/>
+  <rect x="652" y="130" width="300" height="55" rx="6" class="node" filter="url(#shadow)"/><circle cx="678" cy="157" r="12" fill="#138a7e"/><text x="678" y="161" text-anchor="middle" class="stage-no">3</text><text x="700" y="152" class="node-title">Dynamic Planner + Task Scheduler</text><text x="700" y="170" class="node-copy">workflow graph, dependencies, retry, resume</text>
+  <path d="M952 157H987" class="primary"/>
+  <rect x="987" y="130" width="250" height="55" rx="6" class="node" filter="url(#shadow)"/><circle cx="1013" cy="157" r="12" fill="#c68a14"/><text x="1013" y="161" text-anchor="middle" class="stage-no">4</text><text x="1035" y="152" class="node-title">Agent + Tool Router</text><text x="1035" y="170" class="node-copy">models, search, code, MCP tools</text>
+  <path d="M1237 157H1272" class="primary"/>
+  <rect x="1272" y="130" width="236" height="55" rx="6" class="node" filter="url(#shadow)"/><circle cx="1298" cy="157" r="12" fill="#d5654a"/><text x="1298" y="161" text-anchor="middle" class="stage-no">5</text><text x="1320" y="152" class="node-title">Run Monitor + Checkpoints</text><text x="1320" y="170" class="node-copy">approval, status, audit, cancellation</text>
 
-  <rect x="55" y="92" width="1290" height="105" rx="7" class="control"/>
-  <text x="77" y="119" class="band-title">ORCHESTRATION AND CONTROL</text>
-  <rect x="77" y="135" width="210" height="42" rx="4" class="box"/><text x="182" y="153" text-anchor="middle" class="node-title">Context Compiler</text><text x="182" y="169" text-anchor="middle" class="tiny">goal, history, tenant scope</text>
-  <path d="M287 156H330" class="arrow"/>
-  <rect x="330" y="135" width="210" height="42" rx="4" class="box"/><text x="435" y="153" text-anchor="middle" class="node-title">Dynamic Planner</text><text x="435" y="169" text-anchor="middle" class="tiny">task graph and dependencies</text>
-  <path d="M540 156H583" class="arrow"/>
-  <rect x="583" y="135" width="210" height="42" rx="4" class="box"/><text x="688" y="153" text-anchor="middle" class="node-title">Task Scheduler</text><text x="688" y="169" text-anchor="middle" class="tiny">execution, retry, progress</text>
-  <path d="M793 156H836" class="arrow"/>
-  <rect x="836" y="135" width="210" height="42" rx="4" class="box"/><text x="941" y="153" text-anchor="middle" class="node-title">Tool / Model Gateway</text><text x="941" y="169" text-anchor="middle" class="tiny">LLMs, search, code sandbox</text>
-  <rect x="1092" y="135" width="231" height="42" rx="4" class="box"/><text x="1208" y="153" text-anchor="middle" class="node-title">Policy and Run Monitor</text><text x="1208" y="169" text-anchor="middle" class="tiny">authorization, audit, status</text>
+  <rect x="70" y="231" width="350" height="547" rx="8" class="panel"/>
+  <text x="92" y="260" class="eyebrow">EVIDENCE FOUNDATION</text><text x="92" y="285" class="section">Private and scholarly knowledge</text>
+  <rect x="92" y="306" width="145" height="64" rx="6" class="panel-soft"/><text x="108" y="331" class="node-title">Project Library</text><text x="108" y="349" class="node-copy">PDF, DOCX, text, data</text>
+  <rect x="252" y="306" width="145" height="64" rx="6" class="panel-soft"/><text x="268" y="331" class="node-title">Scholarly Search</text><text x="268" y="349" class="node-copy">papers and metadata</text>
+  <path d="M165 370V399H245" class="evidence"/><path d="M325 370V399H245" class="evidence"/>
+  <rect x="92" y="399" width="305" height="68" rx="6" class="teal-node"/><text x="245" y="425" text-anchor="middle" class="node-title">Document Intelligence</text><text x="245" y="444" text-anchor="middle" class="node-copy">parse - normalize - semantic chunk - embed</text>
+  <path d="M245 467V494" class="evidence"/>
+  <rect x="92" y="494" width="305" height="82" rx="6" class="teal-node"/><text x="245" y="521" text-anchor="middle" class="node-title">Hybrid Retrieval</text><text x="245" y="540" text-anchor="middle" class="node-copy">dense + lexical search - reciprocal-rank fusion</text><text x="245" y="558" text-anchor="middle" class="node-copy">project and tenant scoped</text>
+  <path d="M245 576V603" class="evidence"/>
+  <rect x="92" y="603" width="305" height="73" rx="6" fill="#16324f" stroke="#16324f"/><text x="245" y="631" text-anchor="middle" class="center-title">Traceable Evidence Pack</text><text x="245" y="651" text-anchor="middle" class="center-copy">ranked passages + source/page/chunk IDs</text>
+  <rect x="105" y="698" width="92" height="28" rx="14" fill="#edf2f6"/><text x="151" y="716" text-anchor="middle" class="pill">relevance</text><rect x="201" y="698" width="92" height="28" rx="14" fill="#edf2f6"/><text x="247" y="716" text-anchor="middle" class="pill">diversity</text><rect x="297" y="698" width="88" height="28" rx="14" fill="#edf2f6"/><text x="341" y="716" text-anchor="middle" class="pill">provenance</text>
 
-  <text x="55" y="231" class="band-title">EVIDENCE-GROUNDED RESEARCH PIPELINE</text>
-  <rect x="55" y="251" width="188" height="362" rx="7" class="box"/>
-  <circle cx="82" cy="278" r="14" fill="#0f766e"/><text x="82" y="282" text-anchor="middle" class="stage-no">1</text><text x="106" y="284" class="stage-title">Research Inputs</text>
-  <rect x="73" y="310" width="152" height="64" rx="4" class="soft"/><text x="89" y="334" class="node-title">Researcher</text><text x="89" y="352" class="node-copy">topic, question, criteria</text>
-  <rect x="73" y="388" width="152" height="64" rx="4" class="soft"/><text x="89" y="412" class="node-title">Private Sources</text><text x="89" y="430" class="node-copy">PDF, DOCX, text, data</text>
-  <rect x="73" y="466" width="152" height="64" rx="4" class="soft"/><text x="89" y="490" class="node-title">Scholarly Search</text><text x="89" y="508" class="node-copy">papers and metadata</text>
-  <text x="149" y="572" text-anchor="middle" class="tiny">Project- and tenant-scoped</text><text x="149" y="589" text-anchor="middle" class="tiny">research context</text>
+  <rect x="445" y="231" width="725" height="547" rx="8" fill="#fbfcfd" stroke="#c5d1dc"/>
+  <text x="468" y="260" class="eyebrow">MULTI-AGENT SCIENTIFIC REASONING LOOP</text><text x="468" y="285" class="section">Discover, propose, evaluate, and revise</text>
+  <rect x="485" y="314" width="252" height="142" rx="8" class="blue-node" filter="url(#shadow)"/><circle cx="510" cy="339" r="14" fill="#2f6fed"/><text x="510" y="343" text-anchor="middle" class="stage-no">1</text><text x="534" y="344" class="stage-title">Discover</text><text x="509" y="375" class="agent">Literature Agent</text><text x="509" y="396" class="agent">Evidence Mapping</text><text x="509" y="417" class="agent">Gap Analysis</text><text x="509" y="439" class="tiny">search, deduplicate, synthesize</text>
+  <rect x="855" y="314" width="270" height="142" rx="8" class="amber-node" filter="url(#shadow)"/><circle cx="880" cy="339" r="14" fill="#c68a14"/><text x="880" y="343" text-anchor="middle" class="stage-no">2</text><text x="904" y="344" class="stage-title">Hypothesize</text><text x="879" y="375" class="agent">Hypothesis Generator</text><text x="879" y="396" class="agent">Hypothesis Lineage</text><text x="879" y="417" class="agent">Candidate Tournament</text><text x="879" y="439" class="tiny">falsifiable, evidence-linked proposals</text>
+  <rect x="855" y="578" width="270" height="156" rx="8" class="coral-node" filter="url(#shadow)"/><circle cx="880" cy="603" r="14" fill="#d5654a"/><text x="880" y="607" text-anchor="middle" class="stage-no">3</text><text x="904" y="608" class="stage-title">Evaluate</text><text x="879" y="639" class="agent">Novelty Auditor + Prior Art</text><text x="879" y="660" class="agent">Feasibility Agent</text><text x="879" y="681" class="agent">Code + Experiment Runner</text><text x="879" y="704" class="tiny">testability, risk, methods, results</text>
+  <rect x="485" y="578" width="252" height="156" rx="8" class="teal-node" filter="url(#shadow)"/><circle cx="510" cy="603" r="14" fill="#138a7e"/><text x="510" y="607" text-anchor="middle" class="stage-no">4</text><text x="534" y="608" class="stage-title">Critique + Synthesize</text><text x="509" y="639" class="agent">Scientific Critic</text><text x="509" y="660" class="agent">Statistical Reviewer</text><text x="509" y="681" class="agent">Academic Writing Agent</text><text x="509" y="704" class="tiny">accept, revise, reject, or replan</text>
+  <circle cx="805" cy="521" r="90" fill="#16324f" filter="url(#shadow)"/><text x="805" y="491" text-anchor="middle" class="center-title">Shared Research</text><text x="805" y="510" text-anchor="middle" class="center-title">State</text><text x="805" y="532" text-anchor="middle" class="center-copy">plans - observations - evidence</text><text x="805" y="551" text-anchor="middle" class="center-copy">claims - artifacts - decisions</text>
+  <path d="M737 372C785 331 812 330 855 372" class="cycle"/><path d="M1055 456C1108 488 1110 535 1055 578" class="cycle"/><path d="M855 686C805 728 784 728 737 686" class="cycle"/><path d="M555 578C497 543 498 492 555 456" class="cycle"/>
+  <path d="M420 639H455V506H715" class="evidence"/><text x="575" y="495" text-anchor="middle" class="tiny" fill="#138a7e">evidence on demand</text>
+  <path d="M752 462L698 423" class="data-link"/><path d="M858 462L914 423" class="data-link"/><path d="M858 579L914 621" class="data-link"/><path d="M752 579L698 621" class="data-link"/>
 
-  <rect x="275" y="251" width="205" height="362" rx="7" class="box"/>
-  <circle cx="302" cy="278" r="14" fill="#0f766e"/><text x="302" y="282" text-anchor="middle" class="stage-no">2</text><text x="326" y="284" class="stage-title">Document Intelligence</text>
-  <rect x="294" y="310" width="167" height="50" rx="4" class="soft"/><text x="378" y="332" text-anchor="middle" class="node-title">Parse and Normalize</text><text x="378" y="349" text-anchor="middle" class="tiny">text + metadata</text><path d="M378 360V387" class="arrow"/>
-  <rect x="294" y="387" width="167" height="50" rx="4" class="soft"/><text x="378" y="409" text-anchor="middle" class="node-title">Semantic Chunking</text><text x="378" y="426" text-anchor="middle" class="tiny">section-aware segments</text><path d="M378 437V464" class="arrow"/>
-  <rect x="294" y="464" width="167" height="50" rx="4" class="soft"/><text x="378" y="486" text-anchor="middle" class="node-title">Embed and Index</text><text x="378" y="503" text-anchor="middle" class="tiny">vectors + lexical terms</text>
-  <rect x="294" y="538" width="167" height="48" rx="4" class="teal"/><text x="378" y="559" text-anchor="middle" class="node-title">Provenance Binding</text><text x="378" y="576" text-anchor="middle" class="tiny">source, page, chunk ID</text>
+  <rect x="1195" y="231" width="335" height="547" rx="8" class="panel"/>
+  <text x="1217" y="260" class="eyebrow">TRUST AND DELIVERY</text><text x="1217" y="285" class="section">Only supported claims advance</text>
+  <rect x="1217" y="312" width="291" height="72" rx="6" class="coral-node"/><text x="1241" y="340" class="node-title">Claim Verification</text><text x="1241" y="359" class="node-copy">support, contradiction, experiment provenance</text>
+  <path d="M1363 384V411" class="primary"/><rect x="1217" y="411" width="291" height="72" rx="6" class="amber-node"/><text x="1241" y="439" class="node-title">Citation Validation</text><text x="1241" y="458" class="node-copy">claim-to-source integrity and sequence</text>
+  <path d="M1363 483V510" class="primary"/><rect x="1217" y="510" width="291" height="83" rx="6" class="blue-node"/><text x="1241" y="538" class="node-title">Context-Aware Drafting</text><text x="1241" y="557" class="node-copy">document history + selected citation style</text><text x="1241" y="576" class="node-copy">IEEE - APA 7 - Harvard - MLA 9</text>
+  <path d="M1363 593V620" class="primary"/><rect x="1217" y="620" width="291" height="71" rx="6" fill="#16324f" stroke="#16324f"/><text x="1363" y="648" text-anchor="middle" class="center-title">Research Deliverables</text><text x="1363" y="668" text-anchor="middle" class="center-copy">draft + references + DOCX/PDF export</text>
+  <rect x="1240" y="713" width="246" height="36" rx="18" fill="#eef3f6" stroke="#c5d1dc"/><text x="1363" y="736" text-anchor="middle" class="pill">researcher review and revision</text>
+  <path d="M895 521H1180V348H1217" class="primary"/><path d="M1217 348H1164V290H807V314" class="feedback"/><text x="1014" y="282" text-anchor="middle" class="tiny" fill="#d5654a">unsupported or contradicted claims trigger retrieval, revision, or replanning</text>
 
-  <rect x="512" y="251" width="205" height="362" rx="7" class="box"/>
-  <circle cx="539" cy="278" r="14" fill="#0f766e"/><text x="539" y="282" text-anchor="middle" class="stage-no">3</text><text x="563" y="284" class="stage-title">Hybrid Retrieval</text>
-  <rect x="531" y="310" width="167" height="50" rx="4" class="soft"/><text x="615" y="332" text-anchor="middle" class="node-title">Query Expansion</text><text x="615" y="349" text-anchor="middle" class="tiny">goal and gap aware</text><path d="M615 360V387" class="arrow"/>
-  <rect x="531" y="387" width="167" height="50" rx="4" class="soft"/><text x="615" y="409" text-anchor="middle" class="node-title">Dense + Sparse Search</text><text x="615" y="426" text-anchor="middle" class="tiny">semantic and lexical</text><path d="M615 437V464" class="arrow"/>
-  <rect x="531" y="464" width="167" height="50" rx="4" class="soft"/><text x="615" y="486" text-anchor="middle" class="node-title">Fusion and Reranking</text><text x="615" y="503" text-anchor="middle" class="tiny">relevance + diversity</text>
-  <rect x="531" y="538" width="167" height="48" rx="4" class="teal"/><text x="615" y="559" text-anchor="middle" class="node-title">Evidence Pack</text><text x="615" y="576" text-anchor="middle" class="tiny">ranked, traceable claims</text>
-
-  <rect x="749" y="251" width="335" height="362" rx="7" class="teal"/>
-  <circle cx="776" cy="278" r="14" fill="#0f766e"/><text x="776" y="282" text-anchor="middle" class="stage-no">4</text><text x="800" y="284" class="stage-title">Specialized Research Agents</text>
-  <rect x="768" y="310" width="142" height="56" rx="4" class="box"/><text x="839" y="333" text-anchor="middle" class="agent">Literature Agent</text><text x="839" y="350" text-anchor="middle" class="tiny">search and synthesis</text>
-  <rect x="923" y="310" width="142" height="56" rx="4" class="box"/><text x="994" y="333" text-anchor="middle" class="agent">Gap Analysis</text><text x="994" y="350" text-anchor="middle" class="tiny">unresolved questions</text>
-  <rect x="768" y="381" width="142" height="56" rx="4" class="box"/><text x="839" y="404" text-anchor="middle" class="agent">Hypothesis Agent</text><text x="839" y="421" text-anchor="middle" class="tiny">candidate generation</text>
-  <rect x="923" y="381" width="142" height="56" rx="4" class="box"/><text x="994" y="404" text-anchor="middle" class="agent">Novelty Agent</text><text x="994" y="421" text-anchor="middle" class="tiny">prior-art comparison</text>
-  <rect x="768" y="452" width="142" height="56" rx="4" class="box"/><text x="839" y="475" text-anchor="middle" class="agent">Feasibility Agent</text><text x="839" y="492" text-anchor="middle" class="tiny">resources and constraints</text>
-  <rect x="923" y="452" width="142" height="56" rx="4" class="box"/><text x="994" y="475" text-anchor="middle" class="agent">Scientific Critic</text><text x="994" y="492" text-anchor="middle" class="tiny">assumptions and validity</text>
-  <rect x="768" y="523" width="142" height="56" rx="4" class="box"/><text x="839" y="546" text-anchor="middle" class="agent">Statistical Reviewer</text><text x="839" y="563" text-anchor="middle" class="tiny">methods and power</text>
-  <rect x="923" y="523" width="142" height="56" rx="4" class="box"/><text x="994" y="546" text-anchor="middle" class="agent">Tournament + Code</text><text x="994" y="563" text-anchor="middle" class="tiny">rank and test candidates</text>
-  <path d="M910 338H923" class="arrow"/><path d="M994 366V381" class="arrow"/><path d="M923 409H910" class="arrow"/><path d="M839 437V452" class="arrow"/><path d="M910 480H923" class="arrow"/><path d="M994 508V523" class="arrow"/>
-
-  <rect x="1116" y="251" width="229" height="362" rx="7" class="box"/>
-  <circle cx="1143" cy="278" r="14" fill="#0f766e"/><text x="1143" y="282" text-anchor="middle" class="stage-no">5</text><text x="1167" y="284" class="stage-title">Verify and Write</text>
-  <rect x="1135" y="310" width="191" height="58" rx="4" class="soft"/><text x="1231" y="333" text-anchor="middle" class="node-title">Claim Verification</text><text x="1231" y="351" text-anchor="middle" class="tiny">support and contradiction</text><path d="M1231 368V393" class="arrow"/>
-  <rect x="1135" y="393" width="191" height="58" rx="4" class="soft"/><text x="1231" y="416" text-anchor="middle" class="node-title">Citation Validation</text><text x="1231" y="434" text-anchor="middle" class="tiny">source-to-claim integrity</text><path d="M1231 451V476" class="arrow"/>
-  <rect x="1135" y="476" width="191" height="58" rx="4" class="soft"/><text x="1231" y="499" text-anchor="middle" class="node-title">Academic Writing</text><text x="1231" y="517" text-anchor="middle" class="tiny">context-aware drafting</text>
-  <rect x="1135" y="552" width="191" height="42" rx="4" class="teal"/><text x="1231" y="578" text-anchor="middle" class="output">Draft + references + export</text>
-
-  <path d="M243 432H275" class="arrow"/><path d="M480 432H512" class="arrow"/><path d="M717 432H749" class="arrow"/><path d="M1084 432H1116" class="arrow"/>
-  <path d="M688 177V220H917V251" class="memory-link"/><path d="M941 177V230H1231V251" class="memory-link"/>
-  <path d="M1231 310V223H615V251" class="feedback"/><text x="923" y="216" text-anchor="middle" class="tiny" fill="#0f766e">verification feedback triggers retrieval or replanning</text>
-
-  <rect x="55" y="652" width="1290" height="124" rx="7" class="control"/>
-  <text x="77" y="680" class="band-title">SHARED RESEARCH MEMORY AND PERSISTENCE</text>
-  <rect x="77" y="699" width="224" height="51" rx="4" class="box"/><text x="189" y="721" text-anchor="middle" class="node-title">Research State</text><text x="189" y="738" text-anchor="middle" class="tiny">plans, runs, conversations</text>
-  <rect x="325" y="699" width="224" height="51" rx="4" class="box"/><text x="437" y="721" text-anchor="middle" class="node-title">Evidence Store</text><text x="437" y="738" text-anchor="middle" class="tiny">documents, chunks, provenance</text>
-  <rect x="573" y="699" width="224" height="51" rx="4" class="box"/><text x="685" y="721" text-anchor="middle" class="node-title">Vector and Search Index</text><text x="685" y="738" text-anchor="middle" class="tiny">embeddings and lexical index</text>
-  <rect x="821" y="699" width="224" height="51" rx="4" class="box"/><text x="933" y="721" text-anchor="middle" class="node-title">Hypothesis Lineage</text><text x="933" y="738" text-anchor="middle" class="tiny">versions, ancestry, decisions</text>
-  <rect x="1069" y="699" width="254" height="51" rx="4" class="box"/><text x="1196" y="721" text-anchor="middle" class="node-title">Research Artifacts</text><text x="1196" y="738" text-anchor="middle" class="tiny">drafts, citations, results, exports</text>
-  <path d="M149 613V699" class="memory-link"/><path d="M378 613V699" class="memory-link"/><path d="M615 613V699" class="memory-link"/><path d="M917 613V699" class="memory-link"/><path d="M1231 613V699" class="memory-link"/>
-  <text x="700" y="806" text-anchor="middle" class="tiny">Solid arrows: primary data flow   ·   Dashed teal arrow: quality-control feedback   ·   Dashed gray lines: control and persistence</text>
+  <rect x="70" y="811" width="1460" height="116" rx="8" fill="#f3f6f8" stroke="#c5d1dc"/>
+  <text x="91" y="837" class="eyebrow">PERSISTENT DATA, MEMORY, AND GOVERNANCE PLANE</text>
+  <rect x="92" y="854" width="213" height="50" rx="6" class="node"/><text x="199" y="875" text-anchor="middle" class="node-title">PostgreSQL Research State</text><text x="199" y="892" text-anchor="middle" class="tiny">projects, runs, conversations</text>
+  <rect x="326" y="854" width="213" height="50" rx="6" class="node"/><text x="433" y="875" text-anchor="middle" class="node-title">Document + Artifact Store</text><text x="433" y="892" text-anchor="middle" class="tiny">sources, drafts, results, exports</text>
+  <rect x="560" y="854" width="213" height="50" rx="6" class="node"/><text x="667" y="875" text-anchor="middle" class="node-title">Vector + Lexical Index</text><text x="667" y="892" text-anchor="middle" class="tiny">embeddings and searchable chunks</text>
+  <rect x="794" y="854" width="213" height="50" rx="6" class="node"/><text x="901" y="875" text-anchor="middle" class="node-title">Evidence + Lineage Graph</text><text x="901" y="892" text-anchor="middle" class="tiny">claims, citations, ancestry</text>
+  <rect x="1028" y="854" width="213" height="50" rx="6" class="node"/><text x="1135" y="875" text-anchor="middle" class="node-title">Model + Tool Gateways</text><text x="1135" y="892" text-anchor="middle" class="tiny">LLMs, search, code, MCP</text>
+  <rect x="1262" y="854" width="246" height="50" rx="6" class="node"/><text x="1385" y="875" text-anchor="middle" class="node-title">Tenant Security + Audit</text><text x="1385" y="892" text-anchor="middle" class="tiny">authorization, approvals, usage</text>
+  <path d="M245 778V811" class="data-link"/><path d="M807 778V811" class="data-link"/><path d="M1363 778V811" class="data-link"/>
+  <line x1="70" y1="950" x2="1530" y2="950" stroke="#d8e0e7"/>
+  <path d="M88 965H121" class="primary"/><text x="130" y="969" class="tiny">primary workflow</text><path d="M276 965H309" class="evidence"/><text x="318" y="969" class="tiny">evidence flow</text><path d="M443 965H476" class="feedback"/><text x="485" y="969" class="tiny">quality-control feedback</text><path d="M688 965H721" class="data-link"/><text x="730" y="969" class="tiny">persistence and shared state</text>
+  <text x="1510" y="969" text-anchor="end" class="tiny">Modes: deep research - idea discovery - paper review - reproduction - research debugging</text>
 </svg>
 
